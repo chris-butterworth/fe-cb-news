@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 export default function ArticleCard({ article, articleVotes }) {
   const [votes, setVotes] = useState(articleVotes);
 
-
-
   const handleVote = (event, vote) => {
     event.preventDefault();
     patchArticleVotes(article.article_id, vote).catch(() => {
@@ -44,43 +42,44 @@ export default function ArticleCard({ article, articleVotes }) {
         <strong>{article.author}</strong>
         <span>{article.created_at}</span>
       </div>
-      <Link to={`/articles/${article.article_id}`}>
-        <div className="articles-img-thumbnail">
+
+      <div className="articles-img-thumbnail">
+        <Link to={`/articles/${article.article_id}`}>
           <img src={article.article_img_url} />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className="articles-content">
         <Link to={`/articles/${article.article_id}`}>
           <div className="articles-heading">
             <h3>{article.title}</h3>
           </div>
-        </Link>
-        <Link to={`/articles/${article.article_id}`}>
+
           <div className="articles-body">
             <p>{bodyShortner(article.body)}</p>
           </div>
         </Link>
-        <div className="articles-action-bar">
-          <div className="articles-action-bar-votes">
-            <button
-              onClick={(event) => {
-                handleVote(event, -1);
-              }}
-            >
-              -
-            </button>
-            <strong>{votes}</strong>
-            <button
-              onClick={(event) => {
-                handleVote(event, 1);
-              }}
-            >
-              +
-            </button>
-          </div>
-          <button>💬 {article.comment_count}</button>
-          <button>cb/{article.topic}</button>
+      </div>
+
+      <div className="articles-action-bar">
+        <div className="articles-action-bar-votes">
+          <button
+            onClick={(event) => {
+              handleVote(event, -1);
+            }}
+          >
+            -
+          </button>
+          <strong>{votes}</strong>
+          <button
+            onClick={(event) => {
+              handleVote(event, 1);
+            }}
+          >
+            +
+          </button>
         </div>
+        <button>💬 {article.comment_count}</button>
+        <button>cb/{article.topic}</button>
       </div>
     </li>
   );
