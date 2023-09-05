@@ -1,11 +1,12 @@
 import { useParams, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticle } from "../../../api";
+import { getArticle, patchArticleVotes } from "../../../api";
 
 export default function Article({ article, setArticle }) {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [votes, setVotes] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -13,6 +14,7 @@ export default function Article({ article, setArticle }) {
     getArticle(article_id)
       .then((data) => {
         setArticle(data);
+        setVotes(data.votes);
         setIsLoading(false);
       })
       .catch(() => {
@@ -21,8 +23,20 @@ export default function Article({ article, setArticle }) {
       });
   }, []);
 
+  const handleVote = (event, vote) => {
+    event.preventDefault();
+    patchArticleVotes(article.article_id, vote).catch(() => {
+      alert("your comment could not be added");
+    });
+    setVotes((currVotes) => {
+      currVotes += vote;
+      return currVotes;
+    });
+  };
+
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
+
   return (
     <div>
       <p>Back button will be here</p>
@@ -43,9 +57,21 @@ export default function Article({ article, setArticle }) {
         </div>
         <div className="article-single-action-bar">
           <div className="article-single-action-bar-votes">
-            <button>-</button>
-            <strong>{article.votes}</strong>
-            <button>+</button>
+            <button
+              onClick={(event) => {
+                handleVote(event, -1);
+              }}
+            >
+              -
+            </button>
+            <strong>{votes}</strong>
+            <button
+              onClick={(event) => {
+                handleVote(event, 1);
+              }}
+            >
+              +
+            </button>
           </div>
           <button>💬 {article.comment_count}</button>
           <button>cb/{article.topic}</button>

@@ -19,3 +19,19 @@ export const getComments = (article_id) => {
     return data;
   });
 };
+
+export const patchArticleVotes = (article_id, vote) => {
+  return myApi
+    .patch(`/articles/${article_id}`, { inc_votes: vote })
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const patchCommentVotes = (comment_id, vote) => {
+  return myApi
+    .patch(`/comments/${comment_id}`, { inc_votes: vote })
+    .then(({ data }) => {
+      return data;
+    });
+};
