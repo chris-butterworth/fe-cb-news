@@ -7,3 +7,15 @@ export const getArticles = (category) => {
     return data;
   });
 };
+
+export const getArticle = (article_id) => {
+  return myApi.get(`/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getComments = (article_id) => {
+  return myApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data;
+  });
+};

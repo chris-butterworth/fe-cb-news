@@ -1,29 +1,28 @@
-import { useParams } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getArticle } from "../../../api";
 
-export default function Article({article, setArticle}) {
-    const {article_id} = useParams()
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+export default function Article({ article, setArticle }) {
+  const { article_id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
-        setIsLoading(true);
-        setIsError(false);
-        getArticles()
-          .then((data) => {
-            setArticles(data);
-            setIsLoading(false);
-          })
-          .catch(() => {
-            setIsLoading(false);
-            setIsError(true);
-          });
-      }, []);
-    
-    
-      if (isLoading) return <p>Loading...</p>;
-      if (isError) return <p>An unexpected error has occurred</p>;
-    console.log(article_id)
+  useEffect(() => {
+    setIsLoading(true);
+    setIsError(false);
+    getArticle(article_id)
+      .then((data) => {
+        setArticle(data);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+      });
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>An unexpected error has occurred</p>;
   return (
     <div className="articles-card">
       <div className="articles-credit-bar">
@@ -52,6 +51,7 @@ export default function Article({article, setArticle}) {
           <button>cb/{article.topic}</button>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 }
