@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Articles from "./Articles";
+import ArticlePage from './ArticlePage'
 import { getArticles } from "../../api";
 
 export default function Contents() {
@@ -10,6 +11,7 @@ export default function Contents() {
   const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,12 +27,20 @@ export default function Contents() {
       });
   }, []);
 
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>An unexpected error has occurred</p>;
+
   return (
     <main>
       <Routes>
         <Route
-          path="/"
+          path="/articles"
           element={<Articles articles={articles} setArticles={setArticles} />}
+        />
+        <Route
+          path="/articles/:article_id"
+          element={<ArticlePage article={article} setArticle={setArticle} />}
         />
       </Routes>
     </main>

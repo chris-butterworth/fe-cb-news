@@ -7,15 +7,20 @@ export default function ArticleCard({ article }) {
         <>
           {body.slice(0, 100)}...
           <br />
-          <a href="">View full post</a>
+          <a href=""
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            View full post
+          </a>
         </>
       );
     }
   };
 
-  console.log(article.article_img_url);
   return (
-    <div className="articles-card">
+    <li className="articles-card">
       <div className="articles-credit-bar">
         <strong>{article.author}</strong>
         <span>{article.created_at}</span>
@@ -42,6 +47,6 @@ export default function ArticleCard({ article }) {
           <button>cb/{article.topic}</button>
         </div>
       </div>
-    </div>
+    </li>
   );
 }

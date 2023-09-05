@@ -1,11 +1,9 @@
 import axios from "axios";
 
+const myApi = axios.create({ baseURL: "https://cb-news.onrender.com/api" });
+
 export const getArticles = (category) => {
-  return axios
-    .get(
-      `https://cb-news.onrender.com/api/articles`
-    )
-    .then(({data}) => {
-      return data;
-    });
+  return myApi.get(`/articles`).then(({ data }) => {
+    return data;
+  });
 };
