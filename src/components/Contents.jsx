@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
@@ -25,6 +25,8 @@ export default function Contents() {
             element={<Comments comments={comments} setComments={setComments} />}
           />
         </Route>
+
+        <Route path="*" element={<Navigate to="/articles" />} />
       </Routes>
     </main>
   );
