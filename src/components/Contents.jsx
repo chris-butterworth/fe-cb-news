@@ -1,37 +1,30 @@
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Articles from "./Articles";
-import { getArticles } from "../../api";
+import { useState } from "react";
+import Articles from "./Articles/Articles";
+import ArticlePage from "./ArticlePage/ArticleSingle";
+import Comments from "./Comments/Comments";
 
 export default function Contents() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
-  const [user, setUser] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setIsError(false);
-    getArticles()
-      .then((data) => {
-        setArticles(data);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
-      });
-  }, []);
 
   return (
     <main>
       <Routes>
         <Route
-          path="/"
+          path="/articles"
           element={<Articles articles={articles} setArticles={setArticles} />}
         />
+        <Route
+          path="/articles/:article_id"
+          element={<ArticlePage article={article} setArticle={setArticle} />}
+        >
+          <Route
+            path=""
+            element={<Comments comments={comments} setComments={setComments} />}
+          />
+        </Route>
       </Routes>
     </main>
   );
