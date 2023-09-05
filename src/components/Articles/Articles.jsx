@@ -28,7 +28,13 @@ export default function Articles({ articles, setArticles }) {
       <h2>sort by will be here</h2>
       <ul>
         {articles.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} />;
+          return (
+            <ArticleCard
+              key={article.article_id}
+              article={article}
+              articleVotes={article.votes}
+            />
+          );
         })}
       </ul>
     </div>

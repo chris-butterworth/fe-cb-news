@@ -1,13 +1,12 @@
 import { useParams, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getArticle, voteHandler } from "../../../api";
+import { getArticle, patchArticleVotes } from "../../../api";
 
 export default function Article({ article, setArticle }) {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [votes, setVotes] = useState(0);
-  const updateVotes = voteHandler("articles", article_id);
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,11 +25,13 @@ export default function Article({ article, setArticle }) {
 
   const handleVote = (event, vote) => {
     event.preventDefault();
+    patchArticleVotes(article.article_id, vote).catch(() => {
+      alert("your comment could not be added");
+    });
     setVotes((currVotes) => {
       currVotes += vote;
       return currVotes;
     });
-    updateVotes(vote);
   };
 
   if (isLoading) return <p>Loading...</p>;

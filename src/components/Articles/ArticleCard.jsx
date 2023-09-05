@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
+import { patchArticleVotes } from "../../../api";
+import { useEffect, useState } from "react";
+export default function ArticleCard({ article, articleVotes }) {
+  const [votes, setVotes] = useState(articleVotes);
 
-export default function ArticleCard({ article }) {
+
+
+  const handleVote = (event, vote) => {
+    event.preventDefault();
+    patchArticleVotes(article.article_id, vote).catch(() => {
+      alert("your comment could not be added");
+    });
+    setVotes((currVotes) => {
+      currVotes += vote;
+      return currVotes;
+    });
+  };
+
   const bodyShortner = (body) => {
     if (body.length < 100) {
       return body;
@@ -46,9 +62,21 @@ export default function ArticleCard({ article }) {
         </Link>
         <div className="articles-action-bar">
           <div className="articles-action-bar-votes">
-            <button>-</button>
-            <strong>{article.votes}</strong>
-            <button>+</button>
+            <button
+              onClick={(event) => {
+                handleVote(event, -1);
+              }}
+            >
+              -
+            </button>
+            <strong>{votes}</strong>
+            <button
+              onClick={(event) => {
+                handleVote(event, 1);
+              }}
+            >
+              +
+            </button>
           </div>
           <button>💬 {article.comment_count}</button>
           <button>cb/{article.topic}</button>

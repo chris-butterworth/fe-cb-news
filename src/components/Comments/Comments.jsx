@@ -37,7 +37,13 @@ export default function Comments({ comments, setComments }) {
       <h3>Comment Input Box</h3>
       <input></input>
       {comments.map((comment) => {
-        return <CommentCard key={comment.comment_id} comment={comment} />;
+        return (
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            commentVotes={comment.votes}
+          />
+        );
       })}
     </div>
   );

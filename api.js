@@ -20,17 +20,18 @@ export const getComments = (article_id) => {
   });
 };
 
-export const updateVotes = (path, body) => {
-  return myApi.patch(path, body).then(({ data }) => {
-    return data;
-  });
+export const patchArticleVotes = (article_id, vote) => {
+  return myApi
+    .patch(`/articles/${article_id}`, { inc_votes: vote })
+    .then(({ data }) => {
+      return data;
+    });
 };
 
-export const voteHandler = (type, idValue) => {
-  let path = `${type}/${idValue}`;
-  return function (vote) {
-    updateVotes(path, { inc_votes: vote }).catch(() => {
-      alert("your vote could not be added this time");
+export const patchCommentVotes = (comment_id, vote) => {
+  return myApi
+    .patch(`/comments/${comment_id}`, { inc_votes: vote })
+    .then(({ data }) => {
+      return data;
     });
-  };
 };
