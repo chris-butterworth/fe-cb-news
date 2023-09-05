@@ -25,7 +25,7 @@ export default function Articles({ articles, setArticles }) {
 
   return (
     <div>
-      <h2>Articles</h2>
+      <h2>sort by will be here</h2>
       <ul>
         {articles.map((article) => {
           return <ArticleCard key={article.article_id} article={article} />;

@@ -24,25 +24,25 @@ export default function Article({ article, setArticle }) {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
   return (
-    <div className="articles-card">
-      <div className="articles-credit-bar">
-        <strong>{article.author}</strong>
-        <span>{article.created_at}</span>
-      </div>
+    <div>
+      <p>Back button will be here</p>
+      <div className="article-single-card">
+        <div className="article-single-credit-bar">
+          <strong>{article.author}</strong>
+          <span>{article.created_at}</span>
+        </div>
 
-      <div className="articles-img-thumbnail">
-        <img src={article.article_img_url} />
-      </div>
-
-      <div className="articles-content">
-        <div className="articles-heading">
+        <div className="article-single-heading">
           <h3>{article.title}</h3>
         </div>
-        <div className="articles-body">
+        <div className="article-single-img-thumbnail">
+          <img src={article.article_img_url} />
+        </div>
+        <div className="article-single-body">
           <p>{article.body}</p>
         </div>
-        <div className="articles-action-bar">
-          <div className="articles-action-bar-votes">
+        <div className="article-single-action-bar">
+          <div className="article-single-action-bar-votes">
             <button>-</button>
             <strong>{article.votes}</strong>
             <button>+</button>
