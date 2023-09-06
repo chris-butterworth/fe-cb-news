@@ -25,12 +25,12 @@ export default function Article({ article, setArticle }) {
 
   const handleVote = (event, vote) => {
     event.preventDefault();
-    patchArticleVotes(article.article_id, vote).catch(() => {
-      alert("your comment could not be added");
-    });
     setVotes((currVotes) => {
       currVotes += vote;
       return currVotes;
+    });
+    patchArticleVotes(article.article_id, vote).catch(() => {
+      alert("your vote could not be added at this time");
     });
   };
 

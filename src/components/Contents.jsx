@@ -8,6 +8,7 @@ export default function Contents() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const [user, setUser] = useState("jessjelly");
 
   return (
     <main>
@@ -22,7 +23,13 @@ export default function Contents() {
         >
           <Route
             path=""
-            element={<Comments comments={comments} setComments={setComments} />}
+            element={
+              <Comments
+                comments={comments}
+                setComments={setComments}
+                user={user}
+              />
+            }
           />
         </Route>
 

@@ -41,13 +41,14 @@ main {
   padding: 10px;
   cursor: pointer;
   display: grid;
-  grid-template-columns: 1fr 140px;
-  grid-template-rows: 25px 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 25px 1fr auto;
   grid-column-gap: 3px;
   grid-row-gap: 3px;
   grid-template-areas:
     "articles-credit-bar articles-credit-bar"
-    "articles-content articles-img-thumbnail";
+    "articles-content articles-img-thumbnail"
+    "articles-action-bar none";
   .articles-credit-bar {
     font-size: 0.8em;
     grid-area: articles-credit-bar;
@@ -58,24 +59,26 @@ main {
     flex-direction: column;
     justify-content: space-between;
 
-    > .articles-heading {
+    .articles-heading {
       display: flex;
       width: 100%;
       justify-content: space-between;
     }
-    > .articles-body {
+    .articles-body {
       margin-bottom: 15px;
     }
-    > .articles-action-bar {
-      font-size: 0.8em;
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      max-width: 400px;
-      > .articles-action-bar-votes {
-        > button {
-          margin: 0px 5px;
-        }
+  }
+  .articles-action-bar {
+    grid-area: articles-action-bar;
+    font-size: 0.8em;
+    display: flex;
+    width: 100%;
+    height: 25px;
+    justify-content: space-between;
+    max-width: 400px;
+    > .articles-action-bar-votes {
+      > button {
+        margin: 0px 5px;
       }
     }
   }
@@ -83,9 +86,9 @@ main {
     grid-area: articles-img-thumbnail;
     display: flex;
     justify-content: center;
-    > img {
-      width: 130px;
-      height: 100px;
+    > a > img {
+      max-width: 82px;
+      height: 61px;
       border-radius: 5%;
       object-fit: cover;
     }
@@ -160,11 +163,48 @@ main {
     }
   }
 }
+.comment-input {
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  .comment-input-form {
+    display: grid;
+    grid-template-columns: 3em auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "comment-input-field comment-input-field" "comment-input-deactivate-button comment-input-submit-button";
+
+    > .comment-input-field {
+      grid-area: comment-input-field;
+      height: 7em;
+      resize: none;
+      text-align: left;
+      vertical-align: top;
+
+      :focus {
+        border: 3px solid #555;
+      }
+    }
+    > .comment-input-deactivate-button {
+      grid-area: comment-input-deactivate-button;
+      width: 3em;
+    }
+    > .comment-input-submit-button {
+      grid-area: comment-input-submit-button;
+    }
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .articles-body {
     height: 0;
     width: 0;
     overflow: hidden;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .comment-input-field {
+    resize: vertical;
   }
 }

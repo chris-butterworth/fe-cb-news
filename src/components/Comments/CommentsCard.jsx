@@ -6,12 +6,12 @@ export default function CommentCard({ comment, commentVotes }) {
 
   const handleVote = (event, vote) => {
     event.preventDefault();
-    patchCommentVotes(comment.comment_id, vote).catch(() => {
-      alert("your comment could not be added");
-    });
     setVotes((currVotes) => {
       currVotes += vote;
       return currVotes;
+    });
+    patchCommentVotes(comment.comment_id, vote).catch(() => {
+      alert("your vote could not be added at this time");
     });
   };
   return (
