@@ -43,12 +43,18 @@ main {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 25px 1fr auto;
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.5em;
   grid-template-areas:
-    "articles-credit-bar articles-credit-bar"
-    "articles-content articles-img-thumbnail"
-    "articles-action-bar none";
+  "articles-credit-bar articles-credit-bar"
+  "articles-content articles-img-thumbnail"
+  "articles-action-bar none";
+
+  .view-full-post {
+    margin: 0.3em 0;
+    text-decoration: underline;
+    font-weight: 500;
+  }
   .articles-credit-bar {
     font-size: 0.8em;
     grid-area: articles-credit-bar;
@@ -65,7 +71,7 @@ main {
       justify-content: space-between;
     }
     .articles-body {
-      margin-bottom: 15px;
+      margin-bottom: 0;
     }
   }
   .articles-action-bar {

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { patchArticleVotes } from "../../../api";
 import { useState } from "react";
-import { Button } from "../Button";
 
 export default function ArticleCard({ article, articleVotes }) {
   const [votes, setVotes] = useState(articleVotes);
+  const [bodyPreview, setBodyPreview] = useState(true);
 
   const handleVote = (event, vote) => {
     event.preventDefault();
@@ -21,20 +21,7 @@ export default function ArticleCard({ article, articleVotes }) {
     if (body.length < 100) {
       return body;
     } else {
-      return (
-        <>
-          {body.slice(0, 100)}...
-          <br />
-          <Link
-            to=""
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <button>View full post</button>
-          </Link>
-        </>
-      );
+      return <>{body.slice(0, 100)}...</>;
     }
   };
 
@@ -55,11 +42,27 @@ export default function ArticleCard({ article, articleVotes }) {
           <div className="articles-heading">
             <h3>{article.title}</h3>
           </div>
-        </Link>
 
-        <div className="articles-body">
-          <p>{bodyShortner(article.body)}</p>
-        </div>
+          <div className="articles-body">
+            {bodyPreview && bodyShortner(article.body)}
+
+            {!bodyPreview && article.body}
+          </div>
+        </Link>
+        {bodyPreview && (
+          <>
+            
+            <Link
+              to=""
+              onClick={(e) => {
+                e.preventDefault();
+                setBodyPreview(false);
+              }}
+            >
+              <p className="view-full-post">View full post</p>
+            </Link>
+          </>
+        )}
       </div>
 
       <div className="articles-action-bar">
