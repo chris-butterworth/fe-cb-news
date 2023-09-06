@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { patchArticleVotes } from "../../../api";
 import { useState } from "react";
+import { timeSince } from "../../../utils";
 
 export default function ArticleCard({ article, articleVotes }) {
   const [votes, setVotes] = useState(articleVotes);
@@ -29,7 +30,8 @@ export default function ArticleCard({ article, articleVotes }) {
     <li className="articles-card">
       <div className="articles-credit-bar">
         <strong>{article.author}</strong>
-        <span>{article.created_at}</span>
+        <span>&ensp;</span>
+        <span>{timeSince(article.created_at)}</span>
       </div>
 
       <div className="articles-img-thumbnail">

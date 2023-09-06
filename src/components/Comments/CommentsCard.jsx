@@ -1,5 +1,6 @@
 import { patchCommentVotes } from "../../../api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { timeSince } from "../../../utils";
 
 export default function CommentCard({ comment, commentVotes }) {
   const [votes, setVotes] = useState(commentVotes);
@@ -18,7 +19,8 @@ export default function CommentCard({ comment, commentVotes }) {
     <li className="comment-card">
       <div className="comment-credit-bar">
         <strong>{comment.author}</strong>
-        <span>{comment.created_at}</span>
+        <span>&ensp;</span>
+        <span>{timeSince(comment.created_at)}</span>
       </div>
 
       <div className="comment-content">

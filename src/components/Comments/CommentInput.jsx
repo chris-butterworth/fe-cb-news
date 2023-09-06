@@ -8,7 +8,6 @@ export default function CommentInput({ setComments, user, article_id }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setComments((currComments) => {
-      console.log(currComments);
       return [
         {
           comment_id: "optimistic",

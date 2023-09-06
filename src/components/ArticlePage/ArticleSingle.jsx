@@ -1,6 +1,7 @@
 import { useParams, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticle, patchArticleVotes } from "../../../api";
+import { timeSince } from "../../../utils";
 
 export default function Article({ article, setArticle }) {
   const { article_id } = useParams();
@@ -37,13 +38,15 @@ export default function Article({ article, setArticle }) {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
 
+
   return (
     <div>
       <p>Back button will be here</p>
       <div className="article-single-card">
         <div className="article-single-credit-bar">
           <strong>{article.author}</strong>
-          <span>{article.created_at}</span>
+          <span>&ensp;</span>
+          <span>{timeSince(article.created_at)}</span>
         </div>
 
         <div className="article-single-heading">
