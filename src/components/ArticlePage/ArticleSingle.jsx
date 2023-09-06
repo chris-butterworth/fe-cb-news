@@ -73,7 +73,7 @@ export default function Article({ article, setArticle }) {
               +
             </button>
           </div>
-          <button>💬 {article.comment_count}</button>
+          <p> {article.comment_count} comments</p>
           <button>cb/{article.topic}</button>
         </div>
       </div>

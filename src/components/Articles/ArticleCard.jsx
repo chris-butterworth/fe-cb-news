@@ -50,18 +50,15 @@ export default function ArticleCard({ article, articleVotes }) {
           </div>
         </Link>
         {bodyPreview && (
-          <>
-            
-            <Link
-              to=""
-              onClick={(e) => {
-                e.preventDefault();
-                setBodyPreview(false);
-              }}
-            >
-              <p className="view-full-post">View full post</p>
-            </Link>
-          </>
+          <Link
+            to=""
+            onClick={(e) => {
+              e.preventDefault();
+              setBodyPreview(false);
+            }}
+          >
+            <p className="view-full-post">View full post</p>
+          </Link>
         )}
       </div>
 

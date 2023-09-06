@@ -9,9 +9,6 @@ export default function Comments({ comments, setComments, user }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-
-
-
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
@@ -36,16 +33,20 @@ export default function Comments({ comments, setComments, user }) {
         user={user}
         article_id={article_id}
       />
-      {comments.length === 0 && <p>Be the first to post a comment</p>}
-      {comments.map((comment) => {
-        return (
-          <CommentCard
-            key={comment.comment_id}
-            comment={comment}
-            commentVotes={comment.votes}
-          />
-        );
-      })}
+      <div className="comments-area">
+        {comments.length === 0 && (
+          <p className="comments-area-non">Be the first to post a comment</p>
+        )}
+        {comments.map((comment) => {
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              commentVotes={comment.votes}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

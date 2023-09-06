@@ -46,9 +46,9 @@ main {
   grid-column-gap: 0.5em;
   grid-row-gap: 0.5em;
   grid-template-areas:
-  "articles-credit-bar articles-credit-bar"
-  "articles-content articles-img-thumbnail"
-  "articles-action-bar none";
+    "articles-credit-bar articles-credit-bar"
+    "articles-content articles-img-thumbnail"
+    "articles-action-bar none";
 
   .view-full-post {
     margin: 0.3em 0;
@@ -169,6 +169,14 @@ main {
     }
   }
 }
+.comments-area {
+  min-height: 100px;
+  > .comments-area-non {
+    padding: 2em;
+    text-align: center;
+  }
+}
+
 .comment-input {
   border-bottom: 1px solid gray;
   padding: 10px;
