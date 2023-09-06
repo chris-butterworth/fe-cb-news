@@ -88,7 +88,13 @@ export default function ArticleCard({ article, articleVotes }) {
         </Link>
 
         <Link to={``}>
-          <button>cb/{article.topic}</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            cb/{article.topic}
+          </button>
         </Link>
       </div>
     </li>

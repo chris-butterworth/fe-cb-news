@@ -2,8 +2,14 @@ import axios from "axios";
 
 const myApi = axios.create({ baseURL: "https://cb-news.onrender.com/api" });
 
-export const getArticles = (category) => {
-  return myApi.get(`/articles`).then(({ data }) => {
+export const getTopics = () => {
+  return myApi.get("/topics").then(({ data }) => {
+    return data;
+  });
+};
+
+export const getArticles = (topic) => {
+ return myApi.get(`/articles?${topic}`).then(({ data }) => {
     return data;
   });
 };
