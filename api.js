@@ -35,3 +35,14 @@ export const patchCommentVotes = (comment_id, vote) => {
       return data;
     });
 };
+
+export const postComment = (article_id, user, body) => {
+  return myApi
+    .post(`/articles/${article_id}/comments`, {
+      username: user,
+      body: body,
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};

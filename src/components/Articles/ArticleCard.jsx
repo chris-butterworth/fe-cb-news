@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import { patchArticleVotes } from "../../../api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Button } from "../Button";
+
 export default function ArticleCard({ article, articleVotes }) {
   const [votes, setVotes] = useState(articleVotes);
 
   const handleVote = (event, vote) => {
     event.preventDefault();
-    patchArticleVotes(article.article_id, vote).catch(() => {
-      alert("your comment could not be added");
-    });
     setVotes((currVotes) => {
       currVotes += vote;
       return currVotes;
+    });
+    patchArticleVotes(article.article_id, vote).catch(() => {
+      alert("your vote could not be added at this time");
     });
   };
 
@@ -23,14 +25,14 @@ export default function ArticleCard({ article, articleVotes }) {
         <>
           {body.slice(0, 100)}...
           <br />
-          <a
-            href=""
+          <Link
+            to=""
             onClick={(e) => {
               e.preventDefault();
             }}
           >
-            View full post
-          </a>
+            <button>View full post</button>
+          </Link>
         </>
       );
     }
@@ -53,11 +55,11 @@ export default function ArticleCard({ article, articleVotes }) {
           <div className="articles-heading">
             <h3>{article.title}</h3>
           </div>
-
-          <div className="articles-body">
-            <p>{bodyShortner(article.body)}</p>
-          </div>
         </Link>
+
+        <div className="articles-body">
+          <p>{bodyShortner(article.body)}</p>
+        </div>
       </div>
 
       <div className="articles-action-bar">
@@ -78,8 +80,14 @@ export default function ArticleCard({ article, articleVotes }) {
             +
           </button>
         </div>
-        <button>💬 {article.comment_count}</button>
-        <button>cb/{article.topic}</button>
+
+        <Link to={`/articles/${article.article_id}`}>
+          <button>💬 {article.comment_count}</button>
+        </Link>
+
+        <Link to={``}>
+          <button>cb/{article.topic}</button>
+        </Link>
       </div>
     </li>
   );

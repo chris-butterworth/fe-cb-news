@@ -2,11 +2,15 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getComments } from "../../../api";
 import CommentCard from "./CommentsCard";
+import CommentInput from "./CommentInput";
 
-export default function Comments({ comments, setComments }) {
+export default function Comments({ comments, setComments, user }) {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
+
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,18 +28,15 @@ export default function Comments({ comments, setComments }) {
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
-  if (comments.length === 0)
-    return (
-      <div>
-        <h3>Comment Input Box</h3>
-        <input></input>
-        <p>Be the first to post a comment</p>
-      </div>
-    );
+
   return (
     <div className="">
-      <h3>Comment Input Box</h3>
-      <input></input>
+      <CommentInput
+        setComments={setComments}
+        user={user}
+        article_id={article_id}
+      />
+      {comments.length === 0 && <p>Be the first to post a comment</p>}
       {comments.map((comment) => {
         return (
           <CommentCard

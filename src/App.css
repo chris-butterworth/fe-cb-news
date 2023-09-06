@@ -163,11 +163,48 @@ main {
     }
   }
 }
+.comment-input {
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  .comment-input-form {
+    display: grid;
+    grid-template-columns: 3em auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "comment-input-field comment-input-field" "comment-input-deactivate-button comment-input-submit-button";
+
+    > .comment-input-field {
+      grid-area: comment-input-field;
+      height: 7em;
+      resize: none;
+      text-align: left;
+      vertical-align: top;
+
+      :focus {
+        border: 3px solid #555;
+      }
+    }
+    > .comment-input-deactivate-button {
+      grid-area: comment-input-deactivate-button;
+      width: 3em;
+    }
+    > .comment-input-submit-button {
+      grid-area: comment-input-submit-button;
+    }
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .articles-body {
     height: 0;
     width: 0;
     overflow: hidden;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .comment-input-field {
+    resize: vertical;
   }
 }
