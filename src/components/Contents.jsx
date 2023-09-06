@@ -3,6 +3,7 @@ import { useState } from "react";
 import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
+import Article from "./ArticlePage/ArticleSingle";
 
 export default function Contents() {
   const [articles, setArticles] = useState([]);
@@ -32,6 +33,8 @@ export default function Contents() {
             }
           />
         </Route>
+        <Route path="/user"></Route>
+        <Route path="/about"></Route>
 
         <Route path="*" element={<Navigate to="/articles" />} />
       </Routes>
