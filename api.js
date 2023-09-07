@@ -9,8 +9,7 @@ export const getTopics = () => {
 };
 
 export const getArticles = (topic) => {
-
- return myApi.get(`/articles?${topic}`).then(({ data }) => {
+  return myApi.get(`/articles?${topic}`).then(({ data }) => {
     return data;
   });
 };
@@ -41,6 +40,12 @@ export const patchCommentVotes = (comment_id, vote) => {
     .then(({ data }) => {
       return data;
     });
+};
+
+export const deleteComment = (comment_id) => {
+  return myApi.delete(`/comments/${comment_id}`).then(({ data }) => {
+    return data;
+  });
 };
 
 export const postComment = (article_id, user, body) => {

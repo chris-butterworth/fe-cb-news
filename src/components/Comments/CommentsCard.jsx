@@ -1,10 +1,11 @@
-import { patchCommentVotes } from "../../../api";
+import { deleteComment, patchCommentVotes } from "../../../api";
 import { useContext, useState } from "react";
 import { timeSince } from "../../../utils";
 import { UserContext } from "../contexts/Contexts";
 
 export default function CommentCard({ comment, commentVotes }) {
   const [votes, setVotes] = useState(commentVotes);
+  const [hidden, setHidden] = useState("");
   const { user } = useContext(UserContext);
 
   const handleVote = (event, vote) => {
@@ -17,8 +18,17 @@ export default function CommentCard({ comment, commentVotes }) {
       alert("your vote could not be added at this time");
     });
   };
+
+  const handleDeleteComment = (event) => {
+    event.preventDefault();
+    setHidden("hidden");
+    deleteComment(comment.comment_id).catch(() => {
+      setHidden("");
+      alert("your comment could not be removed at this time");
+    });
+  };
   return (
-    <li className="comment-card">
+    <li className={`comment-card ${hidden}`}>
       <div className="comment-credit-bar">
         <strong>{comment.author}</strong>
         <span>&ensp;</span>
@@ -47,7 +57,15 @@ export default function CommentCard({ comment, commentVotes }) {
               +
             </button>
           </div>
-            {user === comment.author &&<button>X</button>}
+          {user === comment.author && (
+            <button
+              onClick={(event) => {
+                handleDeleteComment(event);
+              }}
+            >
+              X
+            </button>
+          )}
         </div>
       </div>
     </li>

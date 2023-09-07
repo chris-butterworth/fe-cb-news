@@ -184,7 +184,9 @@ main {
     }
   }
 }
-
+.comment-card.hidden {
+  display: none;
+}
 .comment-card {
   border-bottom: 1px solid gray;
   padding: 10px;
