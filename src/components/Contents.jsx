@@ -5,7 +5,7 @@ import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
 import Article from "./ArticlePage/ArticleSingle";
 
-export default function Contents() {
+export default function Contents({ topic }) {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
@@ -16,7 +16,14 @@ export default function Contents() {
       <Routes>
         <Route
           path="/articles"
-          element={<Articles articles={articles} setArticles={setArticles} />}
+          element={
+            <Articles
+              articles={articles}
+              setArticles={setArticles}
+              topic={topic}
+            
+            />
+          }
         />
         <Route
           path="/articles/:article_id"

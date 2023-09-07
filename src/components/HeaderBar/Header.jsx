@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTopics } from "../../../api";
 import MenuItems from "./MenuItems";
 
-export default function Header() {
+export default function Header({ topic, setTopic }) {
   const [topics, setTopics] = useState([]);
   const [dropdown, setDropdown] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [menuItems, setMenuItems] = useState([
     {
       title: "Topics",
@@ -37,6 +39,10 @@ export default function Header() {
     });
   }, [topics]);
 
+  const navigate = useNavigate();
+  const redirect = () => {
+    if (window.location.pathname !== "/articles") navigate("/articles");
+  };
   return (
     <header>
       <ul
@@ -45,7 +51,13 @@ export default function Header() {
           setDropdown(false);
         }}
       >
-        <Link to="/articles">
+        <Link
+          onClick={(e) => {
+            e.preventDefault();
+            setTopic("");
+            redirect();
+          }}
+        >
           <img
             className="header-logo"
             src="/src/assets/cb-logo.jpg"
@@ -55,6 +67,8 @@ export default function Header() {
         {menuItems.map((menu, index) => {
           return (
             <MenuItems
+              topic={topic}
+              setTopic={setTopic}
               dropdown={dropdown}
               setDropdown={setDropdown}
               title={menu.title}

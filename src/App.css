@@ -59,13 +59,14 @@ header {
       .dropdown-menu-items {
         padding: 20px 0;
         cursor: pointer;
-        width: 100px;
+        width: 100%;
         border: 1px solid grey;
       }
     }
 
     .dropdown.show {
       display: flex;
+      min-width: 100px;
       flex-direction: column;
       justify-content: center;
     }

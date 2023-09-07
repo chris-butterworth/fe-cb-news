@@ -7,6 +7,8 @@ export default function MenuItems({
   submenu,
   dropdown,
   setDropdown,
+  topic,
+  setTopic,
 }) {
   return (
     <li className="menu-item-flex">
@@ -16,6 +18,7 @@ export default function MenuItems({
             className="menu-items"
             type="button"
             aria-haspopup="menu"
+            url={url}
             onClick={(e) => {
               dropdown ? setDropdown(false) : setDropdown(true);
             }}
@@ -23,6 +26,8 @@ export default function MenuItems({
             {title}{" "}
           </button>
           <Dropdown
+            topic={topic}
+            setTopic={setTopic}
             submenu={submenu}
             dropdown={dropdown}
             setDropdown={setDropdown}
