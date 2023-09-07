@@ -1,9 +1,11 @@
 import { patchCommentVotes } from "../../../api";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { timeSince } from "../../../utils";
+import { UserContext } from "../contexts/Contexts";
 
 export default function CommentCard({ comment, commentVotes }) {
   const [votes, setVotes] = useState(commentVotes);
+  const { user } = useContext(UserContext);
 
   const handleVote = (event, vote) => {
     event.preventDefault();
@@ -45,6 +47,7 @@ export default function CommentCard({ comment, commentVotes }) {
               +
             </button>
           </div>
+            {user === comment.author &&<button>X</button>}
         </div>
       </div>
     </li>

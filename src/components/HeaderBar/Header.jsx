@@ -6,7 +6,6 @@ import MenuItems from "./MenuItems";
 export default function Header({ topic, setTopic }) {
   const [topics, setTopics] = useState([]);
   const [dropdown, setDropdown] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const [menuItems, setMenuItems] = useState([
     {
