@@ -22,10 +22,12 @@ export default function CommentCard({ comment, commentVotes }) {
   const handleDeleteComment = (event) => {
     event.preventDefault();
     setHidden("hidden");
-    deleteComment(comment.comment_id).catch(() => {
-      setHidden("");
-      alert("your comment could not be removed at this time");
-    });
+    if (typeof comment.comment_id === "Number") {
+      deleteComment(comment.comment_id).catch(() => {
+        setHidden("");
+        alert("your comment could not be removed at this time");
+      });
+    }
   };
   return (
     <li className={`comment-card ${hidden}`}>
