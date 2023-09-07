@@ -9,6 +9,7 @@ export const getTopics = () => {
 };
 
 export const getArticles = (topic) => {
+
  return myApi.get(`/articles?${topic}`).then(({ data }) => {
     return data;
   });
