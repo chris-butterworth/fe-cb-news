@@ -27,6 +27,7 @@ a {
   height: 100px;
   object-fit: cover;
 }
+
 header {
   grid-area: header;
   margin: 5px;

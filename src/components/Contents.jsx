@@ -11,11 +11,16 @@ export default function Contents({ topic }) {
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("DESC");
   const [user, setUser] = useState("jessjelly");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSortBy("created_at");
-    setOrder("DESC");
+    setSearchParams((searchParams) => {
+      searchParams.set("sort_by", sortBy);
+      searchParams.set("order", order);
+      return searchParams;
+    });
   }, [topic]);
+
 
   return (
     <main>

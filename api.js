@@ -9,10 +9,12 @@ export const getTopics = () => {
 };
 
 export const getArticles = (topic, searchParams) => {
+  console.log(topic, searchParams.toString(), '<<< API')
   let topicQuery = "";
   if (topic !== "all") {
     topicQuery = `topic=${topic}&`;
   }
+
   return myApi
     .get(`/articles?${topicQuery}${searchParams}`)
     .then(({ data }) => {

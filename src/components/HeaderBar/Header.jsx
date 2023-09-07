@@ -1,11 +1,13 @@
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTopics } from "../../../api";
 import MenuItems from "./MenuItems";
 
-export default function Header({ topic, setTopic }) {
+export default function Header({ setTopic }) {
   const [topics, setTopics] = useState([]);
   const [dropdown, setDropdown] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+
   const [menuItems, setMenuItems] = useState([
     {
       title: "Topics",
@@ -46,7 +48,7 @@ export default function Header({ topic, setTopic }) {
         }}
       >
         <Link
-          to={'/all'}
+          to={`/all`}
           onClick={() => {
             setTopic("");
             setDropdown(false);

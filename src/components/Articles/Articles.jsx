@@ -16,10 +16,14 @@ export default function Articles({
   const [searchParams, setSearchParams] = useSearchParams();
   const { topic } = useParams();
 
+  
   useEffect(() => {
-    const params = { sort_by: sortBy, order: order };
-    setSearchParams(params);
-  }, [sortBy, order]);
+    setSearchParams((searchParams) => {
+      searchParams.set("sort_by", sortBy);
+      searchParams.set("order", order);
+      return searchParams;
+    });
+  }, [sortBy, order, topic]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +37,7 @@ export default function Articles({
         setIsLoading(false);
         setIsError(true);
       });
-  }, [searchParams, topic]);
+  }, [topic, searchParams]);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;

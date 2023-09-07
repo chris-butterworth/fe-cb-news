@@ -1,13 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Dropdown({
-  submenu,
-  dropdown,
-  setDropdown,
-  setTopic,
-}) {
-
-
+export default function Dropdown({ submenu, dropdown, setDropdown, setTopic }) {
   return (
     <ul className={`dropdown ${dropdown ? "show" : ""}`}>
       {submenu.map((item, index) => {
@@ -21,12 +14,7 @@ export default function Dropdown({
                 setTopic(item.slug);
               }}
             >
-              <button
-                className="dropdown-menu-items"
-              >
-                {" "}
-                {item.slug}
-              </button>
+              <button className="dropdown-menu-items"> {item.slug}</button>
             </Link>
           </li>
         );
