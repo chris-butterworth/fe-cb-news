@@ -6,7 +6,6 @@ import MenuItems from "./MenuItems";
 export default function Header({ topic, setTopic }) {
   const [topics, setTopics] = useState([]);
   const [dropdown, setDropdown] = useState(false);
-
   const [menuItems, setMenuItems] = useState([
     {
       title: "Topics",
@@ -38,10 +37,6 @@ export default function Header({ topic, setTopic }) {
     });
   }, [topics]);
 
-  const navigate = useNavigate();
-  const redirect = () => {
-    if (window.location.pathname !== "/articles") navigate("/articles");
-  };
   return (
     <header>
       <ul
@@ -51,10 +46,10 @@ export default function Header({ topic, setTopic }) {
         }}
       >
         <Link
-          onClick={(e) => {
-            e.preventDefault();
+          to={'/all'}
+          onClick={() => {
             setTopic("");
-            redirect();
+            setDropdown(false);
           }}
         >
           <img
@@ -66,7 +61,6 @@ export default function Header({ topic, setTopic }) {
         {menuItems.map((menu, index) => {
           return (
             <MenuItems
-              topic={topic}
               setTopic={setTopic}
               dropdown={dropdown}
               setDropdown={setDropdown}

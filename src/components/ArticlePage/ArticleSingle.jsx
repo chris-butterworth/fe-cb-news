@@ -31,13 +31,16 @@ export default function Article({ article, setArticle }) {
       return currVotes;
     });
     patchArticleVotes(article.article_id, vote).catch(() => {
+      setVotes((currVotes) => {
+        currVotes -= vote;
+        return currVotes;
+      });
       alert("your vote could not be added at this time");
     });
   };
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
-
 
   return (
     <div>

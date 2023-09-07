@@ -5,7 +5,7 @@ import { useState } from "react";
 import { UserContext } from "./components/contexts/Contexts";
 
 function App() {
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState("all");
   const [user, setUser] = useState("jessjelly");
 
   return (

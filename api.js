@@ -8,10 +8,16 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic) => {
-  return myApi.get(`/articles?${topic}`).then(({ data }) => {
-    return data;
-  });
+export const getArticles = (topic, searchParams) => {
+  let topicQuery = "";
+  if (topic !== "all") {
+    topicQuery = `topic=${topic}&`;
+  }
+  return myApi
+    .get(`/articles?${topicQuery}${searchParams}`)
+    .then(({ data }) => {
+      return data;
+    });
 };
 
 export const getArticle = (article_id) => {

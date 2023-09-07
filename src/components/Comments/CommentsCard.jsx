@@ -15,6 +15,10 @@ export default function CommentCard({ comment, commentVotes }) {
       return currVotes;
     });
     patchCommentVotes(comment.comment_id, vote).catch(() => {
+      setVotes((currVotes) => {
+        currVotes -= vote;
+        return currVotes;
+      });
       alert("your vote could not be added at this time");
     });
   };
@@ -22,12 +26,10 @@ export default function CommentCard({ comment, commentVotes }) {
   const handleDeleteComment = (event) => {
     event.preventDefault();
     setHidden("hidden");
-    if (typeof comment.comment_id === "number") {
-      deleteComment(comment.comment_id).catch(() => {
-        setHidden("");
-        alert("your comment could not be removed at this time");
-      });
-    }
+    deleteComment(comment.comment_id).catch(() => {
+      setHidden("");
+      alert("your comment could not be removed at this time");
+    });
   };
   return (
     <li className={`comment-card ${hidden}`}>
@@ -59,15 +61,16 @@ export default function CommentCard({ comment, commentVotes }) {
               +
             </button>
           </div>
-          {user === comment.author && (
-            <button
-              onClick={(event) => {
-                handleDeleteComment(event);
-              }}
-            >
-              X
-            </button>
-          )}
+          {user === comment.author &&
+            typeof comment.comment_id !== "string" && (
+              <button
+                onClick={(event) => {
+                  handleDeleteComment(event);
+                }}
+              >
+                X
+              </button>
+            )}
         </div>
       </div>
     </li>
