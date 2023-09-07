@@ -16,19 +16,19 @@ export default function Articles({
   const [searchParams, setSearchParams] = useSearchParams();
   const { topic } = useParams();
 
-  
   useEffect(() => {
     setSearchParams((searchParams) => {
       searchParams.set("sort_by", sortBy);
       searchParams.set("order", order);
       return searchParams;
     });
+    localStorage.setItem('searchParams', searchParams)
   }, [sortBy, order, topic]);
 
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    getArticles(topic, searchParams)
+    getArticles(topic, localStorage.searchParams)
       .then((data) => {
         setArticles(data);
         setIsLoading(false);
