@@ -1,27 +1,35 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { Route, Routes, Navigate, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
-import Article from "./ArticlePage/ArticleSingle";
 
 export default function Contents({ topic }) {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("DESC");
   const [user, setUser] = useState("jessjelly");
+
+  useEffect(() => {
+    setSortBy("created_at");
+    setOrder("DESC");
+  }, [topic]);
 
   return (
     <main>
       <Routes>
         <Route
-          path="/articles"
+          path="/:topic"
           element={
             <Articles
               articles={articles}
               setArticles={setArticles}
-              topic={topic}
-            
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              order={order}
+              setOrder={setOrder}
             />
           }
         />
@@ -43,7 +51,7 @@ export default function Contents({ topic }) {
         <Route path="/user"></Route>
         <Route path="/about"></Route>
 
-        <Route path="*" element={<Navigate to="/articles" />} />
+        <Route path="*" element={<Navigate to="/all" />} />
       </Routes>
     </main>
   );

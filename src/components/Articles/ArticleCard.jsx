@@ -14,6 +14,10 @@ export default function ArticleCard({ article, articleVotes }) {
       return currVotes;
     });
     patchArticleVotes(article.article_id, vote).catch(() => {
+      setVotes((currVotes) => {
+        currVotes -= vote;
+        return currVotes;
+      });
       alert("your vote could not be added at this time");
     });
   };

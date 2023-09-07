@@ -1,30 +1,30 @@
 import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../../api";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
-export default function Articles({ articles, setArticles, topic }) {
+export default function Articles({
+  articles,
+  setArticles,
+  sortBy,
+  setSortBy,
+  order,
+  setOrder,
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("DESC");
   const [searchParams, setSearchParams] = useSearchParams();
+  const { topic } = useParams();
 
   useEffect(() => {
-    const currentSort = searchParams.get("sort_by");
-    if (!currentSort) setSortBy("created_at");
-    const currentOrder = searchParams.get("order");
-    if (!currentOrder) setOrder("DESC");
-    const topic = searchParams.get("topic");
     const params = { sort_by: sortBy, order: order };
-    if (topic) params.topic = topic;
     setSearchParams(params);
   }, [sortBy, order]);
 
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    getArticles(searchParams)
+    getArticles(topic, searchParams)
       .then((data) => {
         setArticles(data);
         setIsLoading(false);
@@ -33,7 +33,7 @@ export default function Articles({ articles, setArticles, topic }) {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [searchParams]);
+  }, [searchParams, topic]);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>An unexpected error has occurred</p>;
