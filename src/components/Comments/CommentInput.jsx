@@ -6,22 +6,29 @@ export default function CommentInput({ setComments, user, article_id }) {
   const [inputField, setInputField] = useState("");
 
   const handleSubmit = (e) => {
+    const date = new Date();
+    const timeNow = date.toISOString();
     e.preventDefault();
     setComments((currComments) => {
       return [
         {
-          comment_id: "optimistic",
+          comment_id: Math.random().toString(),
           votes: 1,
           author: user,
           body: inputField,
-          created_at: "just now",
+          created_at: timeNow,
         },
         ...currComments,
       ];
     });
-    postComment(article_id, user, inputField).catch(() => {
-      alert("your comment could not be added at this time");
-    });
+    postComment(article_id, user, inputField)
+      .catch(() => {
+        alert("your comment could not be added at this time");
+      })
+      .then(() => {
+        setInputField("");
+        setInputActive(false);
+      });
   };
 
   return (
