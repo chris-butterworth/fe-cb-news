@@ -94,7 +94,7 @@ export default function Article({ article, setArticle }) {
             </button>
           </div>
           <p> {article.comment_count} comments</p>
-          <Link to={`/${article.topic}`}>
+          <Link to={`/topic/${article.topic}`}>
             <button>cb/{article.topic}</button>
           </Link>
         </div>
