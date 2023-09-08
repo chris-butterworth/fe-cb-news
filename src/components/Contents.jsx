@@ -1,11 +1,11 @@
-import { Route, Routes, Navigate, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useState } from "react";
 import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
 import UserProfile from "./User/UserProfile";
 
-export default function Contents({ topic, setIsError }) {
+export default function Contents() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);

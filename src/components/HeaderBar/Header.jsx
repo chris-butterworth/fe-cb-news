@@ -38,8 +38,25 @@ export default function Header({ setTopic }) {
     });
   }, [topics]);
 
+  useEffect(() => {
+    const handleScroll = (event) => {
+      console.log('scroll')
+      setDropdown(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header>
+    <header
+      onScroll={(e) => {
+        setDropdown(false);
+      }}
+    >
       <ul
         className="menus"
         onMouseLeave={() => {
@@ -55,7 +72,7 @@ export default function Header({ setTopic }) {
         >
           <img
             className="header-logo"
-            src="/src/assets/cb-logo.jpg"
+            src="https://pic.onlinewebfonts.com/thumbnails/icons_4116.svg"
             alt="website logo"
           />
         </Link>
