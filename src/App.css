@@ -14,9 +14,10 @@ a {
   display: grid;
   grid-template-areas:
     "header"
+    "error-bar"
     "main";
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   min-height: 100vh;
   max-height: 100vh;
   min-width: 100vw;
@@ -73,7 +74,9 @@ header {
     }
   }
 }
-
+.error-bar {
+  grid-area: error-bar;
+}
 main {
   grid-area: main;
   /* min-height: 1fr; */
