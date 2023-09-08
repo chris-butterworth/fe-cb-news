@@ -18,11 +18,15 @@ export default function Articles({
 
   useEffect(() => {
     setSearchParams((searchParams) => {
-      searchParams.set("sort_by", sortBy);
-      searchParams.set("order", order);
+      sortBy == "created_at"
+        ? searchParams.delete("sort_by")
+        : searchParams.set("sort_by", sortBy);
+      order == "DESC"
+        ? searchParams.delete("order")
+        : searchParams.set("order", order);
       return searchParams;
     });
-    localStorage.setItem('searchParams', searchParams)
+    localStorage.setItem("searchParams", searchParams);
   }, [sortBy, order, topic]);
 
   useEffect(() => {

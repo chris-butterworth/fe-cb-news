@@ -13,7 +13,6 @@ export const getArticles = (topic, searchParams) => {
   if (topic !== "all") {
     topicQuery = `topic=${topic}&`;
   }
-
   return myApi
     .get(`/articles?${topicQuery}${searchParams}`)
     .then(({ data }) => {
