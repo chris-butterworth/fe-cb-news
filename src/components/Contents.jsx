@@ -4,11 +4,13 @@ import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
 import UserProfile from "./User/UserProfile";
+import UserArticles from "./User/UserArticles";
 
 export default function Contents() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  // the searchParam states must live here because the Articles page gets reloaded when selecting a new topic, which resets all the queries
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("DESC");
   const [user, setUser] = useState("jessjelly");
@@ -17,20 +19,20 @@ export default function Contents() {
     <main>
       <Routes>
         <Route
-          path="/:topic"
+          path="/topic/:topic"
           element={
             <Articles
               articles={articles}
               setArticles={setArticles}
               sortBy={sortBy}
-              setSortBy={setSortBy}
               order={order}
               setOrder={setOrder}
+              setSortBy={setSortBy}
             />
           }
         />
         <Route
-          path="/articles/:article_id"
+          path="/article/:article_id"
           element={<ArticlePage article={article} setArticle={setArticle} />}
         >
           <Route
@@ -48,20 +50,16 @@ export default function Contents() {
           <Route
             path=""
             element={
-              <Articles
+              <UserArticles
                 articles={articles}
                 setArticles={setArticles}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                order={order}
-                setOrder={setOrder}
               />
             }
           />
         </Route>
         <Route path="/about"></Route>
 
-        <Route path="*" element={<Navigate to="/all" />} />
+        <Route path="*" element={<Navigate to="/topic/all" />} />
       </Routes>
     </main>
   );

@@ -41,12 +41,12 @@ export default function ArticleCard({ article, articleVotes }) {
       </div>
 
       <div className="articles-img-thumbnail">
-        <Link to={`/articles/${article.article_id}`}>
+        <Link to={`/article/${article.article_id}`}>
           <img src={article.article_img_url} />
         </Link>
       </div>
       <div className="articles-content">
-        <Link to={`/articles/${article.article_id}`}>
+        <Link to={`/article/${article.article_id}`}>
           <div className="articles-heading">
             <h3>{article.title}</h3>
           </div>
@@ -89,11 +89,11 @@ export default function ArticleCard({ article, articleVotes }) {
           </button>
         </div>
 
-        <Link to={`/articles/${article.article_id}`}>
+        <Link to={`/article/${article.article_id}`}>
           <button>💬 {article.comment_count}</button>
         </Link>
 
-        <Link to={`/${article.topic}`}>
+        <Link to={`/topic/${article.topic}`}>
           <button>cb/{article.topic}</button>
         </Link>
       </div>
