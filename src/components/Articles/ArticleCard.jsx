@@ -22,6 +22,8 @@ export default function ArticleCard({ article, articleVotes }) {
     });
   };
 
+
+
   const bodyShortner = (body) => {
     if (body.length < 100) {
       return body;
@@ -91,14 +93,8 @@ export default function ArticleCard({ article, articleVotes }) {
           <button>💬 {article.comment_count}</button>
         </Link>
 
-        <Link to={``}>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            cb/{article.topic}
-          </button>
+        <Link to={`/${article.topic}`}>
+          <button>cb/{article.topic}</button>
         </Link>
       </div>
     </li>

@@ -1,12 +1,15 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getTopics } from "../../../api";
 import MenuItems from "./MenuItems";
+import { UserContext } from "../contexts/Contexts";
 
 export default function Header({ setTopic }) {
   const [topics, setTopics] = useState([]);
   const [dropdown, setDropdown] = useState(false);
-    const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useContext(UserContext);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [menuItems, setMenuItems] = useState([
     {
@@ -16,11 +19,7 @@ export default function Header({ setTopic }) {
     },
     {
       title: "Profile",
-      url: "/user",
-    },
-    {
-      title: "About",
-      url: "/about",
+      url: `/user/${user}`,
     },
   ]);
 

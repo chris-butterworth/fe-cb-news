@@ -13,16 +13,21 @@ export default function Articles({
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [viewAllUserPosts, setViewAllUserPosts] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { topic } = useParams();
+  const { topic, username } = useParams();
 
   useEffect(() => {
     setSearchParams((searchParams) => {
-      searchParams.set("sort_by", sortBy);
-      searchParams.set("order", order);
+      sortBy == "created_at"
+        ? searchParams.delete("sort_by")
+        : searchParams.set("sort_by", sortBy);
+      order == "DESC"
+        ? searchParams.delete("order")
+        : searchParams.set("order", order);
       return searchParams;
     });
-    localStorage.setItem('searchParams', searchParams)
+    localStorage.setItem("searchParams", searchParams);
   }, [sortBy, order, topic]);
 
   useEffect(() => {
@@ -44,44 +49,75 @@ export default function Articles({
 
   return (
     <div>
-      <h3>
-        {!topic && "all topics"}
-        {topic}
-      </h3>
-      <label htmlFor="sortby">Sort</label>
-      <select
-        id="sortby"
-        value={sortBy}
-        onChange={(e) => {
-          setSortBy(e.target.value);
-        }}
-      >
-        <option value="created_at">Date posted</option>
-        <option value="votes">Votes</option>
-        <option value="comment_count">Comments</option>
-      </select>
-      <select value={order} onChange={(e) => setOrder(e.target.value)}>
-        <option value="DESC">descending</option>
-        <option value="ASC">ascending</option>
-      </select>
-      <button
-        onClick={() => {
-          setSortBy("created_at");
-          setOrder("DESC");
-        }}
-      >
-        reset
-      </button>
+      {!username && (
+        <div>
+          <h3>
+            {!topic && "all topics"}
+            {topic}
+          </h3>
+          <label htmlFor="sortby">Sort</label>
+          <select
+            id="sortby"
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+            }}
+          >
+            <option value="created_at">Date posted</option>
+            <option value="votes">Votes</option>
+            <option value="comment_count">Comments</option>
+          </select>
+          <select value={order} onChange={(e) => setOrder(e.target.value)}>
+            <option value="DESC">descending</option>
+            <option value="ASC">ascending</option>
+          </select>
+          <button
+            onClick={() => {
+              setSortBy("created_at");
+              setOrder("DESC");
+            }}
+          >
+            reset
+          </button>
+        </div>
+      )}
       <ul>
-        {articles.map((article) => {
-          return (
-            <ArticleCard
-              key={article.article_id}
-              article={article}
-              articleVotes={article.votes}
-            />
-          );
-        })}
+        {username && (
+          <div>
+            <h3>Your most recent posts</h3>
+            <button
+              onClick={() => {
+                viewAllUserPosts
+                  ? setViewAllUserPosts(false)
+                  : setViewAllUserPosts(true);
+              }}
+            >
+              {viewAllUserPosts ? "View less" : "View all"}
+            </button>
+            {articles
+              .filter((article) => article.author === username)
+              .slice(0, viewAllUserPosts ? articles.length : 3)
+              .map((article) => {
+                return (
+                  <ArticleCard
+                    key={article.article_id}
+                    article={article}
+                    articleVotes={article.votes}
+                  />
+                );
+              })}
+          </div>
+        )}
+        {!username &&
+          articles.map((article) => {
+            return (
+              <ArticleCard
+                key={article.article_id}
+                article={article}
+                articleVotes={article.votes}
+              />
+            );
+          })}
       </ul>
     </div>
   );

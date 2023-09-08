@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Articles from "./Articles/Articles";
 import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
+import UserProfile from "./User/UserProfile";
 
 export default function Contents({ topic }) {
   const [articles, setArticles] = useState([]);
@@ -11,16 +12,6 @@ export default function Contents({ topic }) {
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("DESC");
   const [user, setUser] = useState("jessjelly");
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    setSearchParams((searchParams) => {
-      searchParams.set("sort_by", sortBy);
-      searchParams.set("order", order);
-      return searchParams;
-    });
-  }, [topic]);
-
 
   return (
     <main>
@@ -53,7 +44,21 @@ export default function Contents({ topic }) {
             }
           />
         </Route>
-        <Route path="/user"></Route>
+        <Route path="/user/:username" element={<UserProfile />}>
+          <Route
+            path=""
+            element={
+              <Articles
+                articles={articles}
+                setArticles={setArticles}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                order={order}
+                setOrder={setOrder}
+              />
+            }
+          />
+        </Route>
         <Route path="/about"></Route>
 
         <Route path="*" element={<Navigate to="/all" />} />
