@@ -6,7 +6,7 @@ import { timeSince } from "../../../utils";
 export default function Article({ article, setArticle }) {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState('');
   const [votes, setVotes] = useState(0);
   const navigate = useNavigate();
 
@@ -19,10 +19,16 @@ export default function Article({ article, setArticle }) {
         setVotes(data.votes);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
-      });
+      .catch(
+        ({
+          response: {
+            data: { msg },
+          },
+        }) => {
+          setIsLoading(false);
+          setIsError(msg);
+        }
+      );
   }, []);
 
   const handleVote = (event, vote) => {
@@ -41,7 +47,7 @@ export default function Article({ article, setArticle }) {
   };
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>An unexpected error has occurred</p>;
+  if (isError) return <h3>{isError}</h3>;
 
   return (
     <div>

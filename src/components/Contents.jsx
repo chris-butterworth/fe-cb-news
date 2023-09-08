@@ -5,7 +5,7 @@ import ArticlePage from "./ArticlePage/ArticleSingle";
 import Comments from "./Comments/Comments";
 import UserProfile from "./User/UserProfile";
 
-export default function Contents({ topic }) {
+export default function Contents({ topic, setIsError }) {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);

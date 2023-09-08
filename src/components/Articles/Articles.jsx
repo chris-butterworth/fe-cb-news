@@ -12,7 +12,7 @@ export default function Articles({
   setOrder,
 }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState("");
   const [viewAllUserPosts, setViewAllUserPosts] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { topic, username } = useParams();
@@ -38,15 +38,20 @@ export default function Articles({
         setArticles(data);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
-      });
+      .catch(
+        ({
+          response: {
+            data: { msg },
+          },
+        }) => {
+          setIsLoading(false);
+          setIsError(msg);
+        }
+      );
   }, [topic, searchParams]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>An unexpected error has occurred</p>;
-
+  if (isError) return <h3>{isError}</h3>;
   return (
     <div>
       {!username && (
