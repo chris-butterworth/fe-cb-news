@@ -1,4 +1,4 @@
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticle, patchArticleVotes } from "../../../api";
 import { timeSince } from "../../../utils";
@@ -8,6 +8,7 @@ export default function Article({ article, setArticle }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [votes, setVotes] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,7 +45,14 @@ export default function Article({ article, setArticle }) {
 
   return (
     <div>
-      <p>Back button will be here</p>
+      <button
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Go back
+      </button>
+
       <div className="article-single-card">
         <div className="article-single-credit-bar">
           <strong>{article.author}</strong>
@@ -80,7 +88,9 @@ export default function Article({ article, setArticle }) {
             </button>
           </div>
           <p> {article.comment_count} comments</p>
-          <button>cb/{article.topic}</button>
+          <Link to={`/${article.topic}`}>
+            <button>cb/{article.topic}</button>
+          </Link>
         </div>
       </div>
       <Outlet />

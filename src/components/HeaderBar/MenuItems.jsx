@@ -34,7 +34,13 @@ export default function MenuItems({
           />
         </>
       ) : (
-        <Link role="button" to={url}>
+        <Link
+          role="button"
+          to={url}
+          onClick={() => {
+            setDropdown(false);
+          }}
+        >
           <button className="menu-items">{title}</button>
         </Link>
       )}
