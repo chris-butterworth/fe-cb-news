@@ -37,7 +37,7 @@ export default function Articles({
       );
   }, [topic, searchParams]);
 
-  if (isLoading) return <p className="loading-message">Loading...</p>;
+  if (isLoading) return <p className="loading-message">Loading... <br/> Data is hosted using a free plan at Render which spins down during inactivity. It won't be a moment! </p>;
   if (isError)
     return (
       <div className="error-message">

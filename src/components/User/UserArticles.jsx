@@ -29,12 +29,19 @@ export default function UserArticles({ articles, setArticles }) {
       );
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <p>
+        Loading... <br /> the data is hosted using a free plan at Render which
+        spins down during inactivity. It won't be a moment!{" "}
+      </p>
+    );
   if (isError) return <strong>{isError}</strong>;
   return (
-    <div>
+    <div className="user-articles">
       <ul>
         <h3>Your most recent posts</h3>
+        <br />
         <button
           onClick={() => {
             viewAllUserPosts

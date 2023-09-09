@@ -23,12 +23,12 @@ const SortBar = ({ topic, sortBy, setSortBy, order, setOrder }) => {
   }, [order]);
 
   return (
-    <div>
+    <div className="sort-bar">
       <h3>
-        {!topic && "all"}
-        {topic}
+        {!topic && "all topics"}
+        {topic && `cb / ${topic}`}
       </h3>
-      <label htmlFor="sortby">Sort</label>
+      <label htmlFor="sortby">Sort by - </label>
       <select
         id="sortby"
         value={sortBy}
@@ -39,7 +39,7 @@ const SortBar = ({ topic, sortBy, setSortBy, order, setOrder }) => {
         <option value="created_at">Date posted</option>
         <option value="votes">Votes</option>
         <option value="comment_count">Comments</option>
-      </select>
+      </select> 
       <select
         value={order}
         onChange={(e) => {
