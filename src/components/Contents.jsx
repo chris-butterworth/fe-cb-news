@@ -57,9 +57,7 @@ export default function Contents() {
             }
           />
         </Route>
-        {/* <Route path="/about"></Route> */}
-
-        {/* <Route path="*" element={<Navigate to="/topic/all" />} /> */}
+        <Route path="*" element={<Navigate to="/topic/all" />} />
       </Routes>
     </main>
   );
