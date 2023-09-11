@@ -7,14 +7,14 @@ export const getTopics = () => {
     return data;
   });
 };
-
+let count = 0
 export const getArticles = (topic, searchParams) => {
   if (!topic) topic = "all";
   let topicQuery = "";
   if (topic !== "all") {
     topicQuery = `topic=${topic}&`;
   }
-  // console.log(topic, searchParams)
+  console.log(count++, topic, searchParams.toString())
   return myApi
     .get(`/articles?${topicQuery}${searchParams}`)
     .then(({ data }) => {

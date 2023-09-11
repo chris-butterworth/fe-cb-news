@@ -64,7 +64,7 @@ export default function Header({ setTopic }) {
         }}
       >
         <Link
-          to={`/all`}
+          to={`/topic/all`}
           onClick={() => {
             setTopic("");
             setDropdown(false);
