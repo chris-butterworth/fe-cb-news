@@ -8,7 +8,7 @@ export default function Dropdown({ submenu, dropdown, setDropdown, setTopic }) {
           <li key={index}>
             <Link
               role="button"
-              to={`topic/${item.slug}`}
+              to={`/topic/${item.slug}`}
               onClick={() => {
                 setDropdown(false);
                 setTopic(item.slug);

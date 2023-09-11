@@ -1,20 +1,20 @@
 import axios from "axios";
 
 const myApi = axios.create({ baseURL: "https://cb-news.onrender.com/api" });
+// const myApi = axios.create({ baseURL: "http://localhost:9090/api" });
 
 export const getTopics = () => {
   return myApi.get("/topics").then(({ data }) => {
     return data;
   });
 };
-let count = 0
+
 export const getArticles = (topic, searchParams) => {
   if (!topic) topic = "all";
   let topicQuery = "";
   if (topic !== "all") {
     topicQuery = `topic=${topic}&`;
   }
-  console.log(count++, topic, searchParams.toString())
   return myApi
     .get(`/articles?${topicQuery}${searchParams}`)
     .then(({ data }) => {
