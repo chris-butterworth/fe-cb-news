@@ -18,6 +18,16 @@ export default function Articles({
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    setSearchParams((searchParams) => {
+      order === "DESC" || order === ""
+        ? searchParams.delete("order")
+        : searchParams.set("order", order);
+      sortBy === "created_at" || sortBy === ""
+        ? searchParams.delete("sort_by")
+        : searchParams.set("sort_by", sortBy);
+      return searchParams;
+    });
+
     setIsLoading(true);
     setIsError(false);
     getArticles(topic, searchParams)
@@ -35,9 +45,15 @@ export default function Articles({
           setIsError(msg);
         }
       );
-  }, [topic, searchParams]);
+  }, [topic, order, sortBy]);
 
-  if (isLoading) return <p className="loading-message">Loading... <br/> Data is hosted using a free plan at Render which spins down during inactivity. It won't be a moment! </p>;
+  if (isLoading)
+    return (
+      <p className="loading-message">
+        Loading... <br /> Data is hosted using a free plan at Render which spins
+        down during inactivity. It won't be a moment!{" "}
+      </p>
+    );
   if (isError)
     return (
       <div className="error-message">
