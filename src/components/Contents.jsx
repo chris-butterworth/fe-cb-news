@@ -6,6 +6,7 @@ import ArticlePage from './ArticlePage/ArticleSingle'
 import Comments from './Comments/Comments'
 import UserProfile from './User/UserProfile'
 import Login from './User/Login'
+import CreditPage from './ArticlePage/CreditPage'
 
 export default function Contents() {
 	const [articles, setArticles] = useState([])
@@ -25,6 +26,8 @@ export default function Contents() {
 	return (
 		<main>
 			<Routes>
+				<Route path="/credit" element={<CreditPage />} />
+
 				<Route path="/login" element={<Login />} />
 
 				<Route
@@ -57,89 +60,6 @@ export default function Contents() {
 				/>
 
 				<Route path="/login" element={<Login />} />
-				<Route path="*" element={<Navigate to="/topic/all" />} />
-			</Routes>
-		</main>
-
-		// <main>
-		// 	<Routes>
-		// 		<Route
-		// 			path="/topic/:topic"
-		// 			element={
-		// 				<Articles
-		// 					articles={articles}
-		// 					setArticles={setArticles}
-		// 					sortBy={sortBy}
-		// 					order={order}
-		// 					setOrder={setOrder}
-		// 					setSortBy={setSortBy}
-		// 				/>
-		// 			}
-		// 		/>
-		// 		<Route
-		// 			path="/article/:article_id"
-		// 			element={<ArticlePage article={article} setArticle={setArticle} />}
-		// 		>
-		// 			<Route
-		// 				path=""
-		// 				element={<Comments comments={comments} setComments={setComments} />}
-		// 			/>
-		// 		</Route>
-		// 		<Route
-		// 			path="/profile"
-		// 			element={
-		// 				<RequireAuth>
-		// 					<UserProfile articles={articles} setArticles={setArticles} />
-		// 				</RequireAuth>
-		// 			}
-		// 		/>
-
-		// 		<Route path="/login" element={<Login />} />
-		// 		<Route path="*" element={<Navigate to="/topic/all" />} />
-		// 	</Routes>
-		// </main>
-	)
-	return (
-		<main>
-			<Routes>
-				<Route path="/credit" element={<CreditPage />} />
-
-				<Route
-					path="/topic/:topic"
-					element={
-						<Articles
-							articles={articles}
-							setArticles={setArticles}
-							sortBy={sortBy}
-							order={order}
-							setOrder={setOrder}
-							setSortBy={setSortBy}
-						/>
-					}
-				/>
-				<Route
-					path="/article/:article_id"
-					element={<ArticlePage article={article} setArticle={setArticle} />}
-				>
-					<Route
-						path=""
-						element={
-							<Comments
-								comments={comments}
-								setComments={setComments}
-								user={user}
-							/>
-						}
-					/>
-				</Route>
-				<Route path="/user/:username" element={<UserProfile />}>
-					<Route
-						path=""
-						element={
-							<UserArticles articles={articles} setArticles={setArticles} />
-						}
-					/>
-				</Route>
 				<Route path="*" element={<Navigate to="/topic/all" />} />
 			</Routes>
 		</main>

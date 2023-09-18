@@ -4,7 +4,6 @@ import UserArticles from './UserArticles'
 
 export default function UserProfile({ articles, setArticles }) {
 	const { user } = useContext(UserContext)
-	console.log(user)
 	return (
 		<div>
 			<div className="profile-header">
@@ -31,7 +30,7 @@ export default function UserProfile({ articles, setArticles }) {
 				</a>
 				<br />
 			</div>
-			{/* <UserArticles articles={articles} setArticles={setArticles} /> */}
+			<UserArticles articles={articles} setArticles={setArticles} />
 		</div>
 	)
 }

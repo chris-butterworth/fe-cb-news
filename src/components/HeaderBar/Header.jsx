@@ -6,7 +6,6 @@ import { UserContext } from '../contexts/Contexts'
 export default function Header({ setTopic }) {
 	const [topics, setTopics] = useState([])
 	const { user, setUser } = useContext(UserContext)
-	console.log(user)
 	useEffect(() => {
 		getTopics().then((data) => {
 			setTopics(data)
