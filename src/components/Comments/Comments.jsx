@@ -8,16 +8,17 @@ export default function Comments({ comments, setComments, user }) {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
+console.log(typeof +article_id)
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    getComments(article_id)
+    getComments(+article_id)
       .then((data) => {
         setComments(data);
         setIsLoading(false);
       })
-      .catch(() => {
+      .catch((message) => {
+        console.log(message)
         setIsLoading(false);
         setIsError(true);
       });

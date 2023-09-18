@@ -18,7 +18,7 @@ export default function ArticleCard({ article, articleVotes }) {
         currVotes -= vote;
         return currVotes;
       });
-      alert("your vote could not be added at this time");
+      alert("Your vote could not be added at this time");
     });
   };
 
