@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const myApi = axios.create({ baseURL: "https://cb-news.onrender.com/api" });
-const myApi = axios.create({ baseURL: 'http://localhost:9090/api' })
+const myApi = axios.create({ baseURL: "https://cb-news.onrender.com/api" });
+// const myApi = axios.create({ baseURL: 'http://localhost:9090/api' })
 
 export const getTopics = () => {
 	return myApi.get('/topics').then(({ data }) => {
