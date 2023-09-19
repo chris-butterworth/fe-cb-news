@@ -1,8 +1,7 @@
-import ArticleCard from '../Articles/ArticleCard'
+import ArticleCard from '../articles-all/ArticleCard'
 import { useEffect, useState, useContext } from 'react'
 import { getArticles } from '../../../api'
 import { UserContext } from '../contexts/Contexts'
-import { useParams } from 'react-router-dom'
 
 export default function UserArticles({ articles, setArticles }) {
 	const [isLoading, setIsLoading] = useState(false)

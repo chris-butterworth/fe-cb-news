@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
-import { getTopics } from '../../../api'
-import { UserContext } from '../contexts/Contexts'
+import { getTopics } from '../../api'
+import { UserContext } from './contexts/Contexts'
 
 export default function Header({ setTopic }) {
 	const [topics, setTopics] = useState([])
-	const { user, setUser } = useContext(UserContext)
+	const { setUser } = useContext(UserContext)
 	useEffect(() => {
 		getTopics().then((data) => {
 			setTopics(data)
@@ -59,17 +59,17 @@ export default function Header({ setTopic }) {
 						</ul>
 					</li>
 					<li>
-						<a href={`/profile`}>Profile</a>
+						<Link to={`/profile`}>Profile</Link>
 					</li>
 					<li>
-						<a
+						<Link
 							onClick={() => {
 								setUser('')
 								localStorage.setItem('user', '')
 							}}
 						>
 							Logout
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</nav>

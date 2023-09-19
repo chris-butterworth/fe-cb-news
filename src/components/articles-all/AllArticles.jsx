@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { getArticles } from '../../../api'
 import { useParams, useSearchParams } from 'react-router-dom'
 import SortBar from './SortBar'
-import { portfolio } from '../../Portfolio'
 import CreditsCard from './CreditsCard'
 
 export default function Articles({

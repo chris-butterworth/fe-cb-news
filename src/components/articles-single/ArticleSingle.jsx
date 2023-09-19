@@ -2,7 +2,6 @@ import { useParams, Outlet, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getArticle, patchArticleVotes } from '../../../api'
 import { timeSince } from '../../../utils'
-import { portfolio } from '../../Portfolio'
 
 export default function Article({ article, setArticle }) {
 	const { article_id } = useParams()

@@ -1,12 +1,11 @@
-import { Route, Routes, useNavigate, Navigate } from 'react-router-dom'
-import { useState, useContext, useEffect } from 'react'
-import { UserContext } from './contexts/Contexts'
-import Articles from './Articles/Articles'
-import ArticlePage from './ArticlePage/ArticleSingle'
-import Comments from './Comments/Comments'
-import UserProfile from './User/UserProfile'
-import Login from './User/Login'
-import CreditPage from './ArticlePage/CreditPage'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import Articles from './articles-all/AllArticles'
+import ArticlePage from './articles-single/ArticleSingle'
+import Comments from './comments/Comments'
+import UserProfile from './user/UserProfile'
+import Login from './user/Login'
+import CreditPage from './articles-single/CreditPage'
 
 export default function Contents() {
 	const [articles, setArticles] = useState([])
@@ -15,13 +14,6 @@ export default function Contents() {
 	// the searchParam states must live here because the Articles page gets reloaded when selecting a new topic, which resets all the queries
 	const [sortBy, setSortBy] = useState('created_at')
 	const [order, setOrder] = useState('DESC')
-	let navigate = useNavigate()
-
-	useEffect(() => {
-		if (!localStorage.getItem('user')) {
-			return navigate('/login')
-		}
-	}, [localStorage.getItem('user')])
 
 	return (
 		<main>
