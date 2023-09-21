@@ -1,13 +1,12 @@
 import ArticleCard from '../articles-all/ArticleCard'
 import { useEffect, useState, useContext } from 'react'
 import { getArticles } from '../../../api'
-import { UserContext } from '../contexts/Contexts'
-
+import { Context } from '../contexts/Contexts'
 export default function UserArticles({ articles, setArticles }) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [isError, setIsError] = useState('')
 	const [viewAllUserPosts, setViewAllUserPosts] = useState(false)
-	const { user } = useContext(UserContext)
+	const { user } = useContext(Context)
 
 	useEffect(() => {
 		setIsLoading(true)

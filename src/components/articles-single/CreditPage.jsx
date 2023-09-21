@@ -25,11 +25,11 @@ export default function CreditPage() {
 				<div className="article-single-heading">
 					<h3>{portfolio.title}</h3>
 				</div>
-				<div className="article-single-img-thumbnail">
-					<img src={portfolio.article_img_url} />
-				</div>
 				<div className="article-single-body">
 					<p>{portfolio.body}</p>
+				</div>
+				<div className="article-single-img-thumbnail">
+					<img src={portfolio.article_img_url} />
 				</div>
 			</div>
 		</div>

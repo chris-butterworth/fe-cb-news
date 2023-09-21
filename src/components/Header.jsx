@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import { getTopics } from '../../api'
-import { UserContext } from './contexts/Contexts'
+import { Context } from './contexts/Contexts'
 
 export default function Header({ setTopic }) {
 	const [topics, setTopics] = useState([])
-	const { setUser } = useContext(UserContext)
+	const { setUser } = useContext(Context)
 	useEffect(() => {
 		getTopics().then((data) => {
 			setTopics(data)

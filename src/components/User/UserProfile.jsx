@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { UserContext } from '../contexts/Contexts'
+import { Context } from '../contexts/Contexts'
 import UserArticles from './UserArticles'
 
 export default function UserProfile({ articles, setArticles }) {
-	const { user } = useContext(UserContext)
+	const { user } = useContext(Context)
 	return (
 		<div>
 			<div className="profile-header">

@@ -1,12 +1,12 @@
 import { deleteComment, patchCommentVotes } from "../../../api";
 import { useContext, useState } from "react";
 import { timeSince } from "../../../utils";
-import { UserContext } from "../contexts/Contexts";
+import { Context } from "../contexts/Contexts";
 
 export default function CommentCard({ comment, commentVotes }) {
   const [votes, setVotes] = useState(commentVotes);
   const [hidden, setHidden] = useState("");
-  const { user } = useContext(UserContext);
+  const { user } = useContext(Context);
 
   const handleVote = (event, vote) => {
     event.preventDefault();

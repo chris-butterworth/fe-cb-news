@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { getUsers } from '../../../api'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../contexts/Contexts'
+import { Context } from '../contexts/Contexts'
 
 export default function Login() {
 	const [users, setUsers] = useState([])
-	const { setUser } = useContext(UserContext)
+	const { setUser } = useContext(Context)
 
 	useEffect(() => {
 		getUsers().then((data) => {
