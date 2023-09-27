@@ -6,6 +6,7 @@ import Comments from './comments/Comments'
 import UserProfile from './user/UserProfile'
 import Login from './user/Login'
 import CreditPage from './articles-single/CreditPage'
+import { Box } from '@mui/material'
 
 export default function Contents() {
 	const [articles, setArticles] = useState([])
@@ -16,8 +17,7 @@ export default function Contents() {
 	const [order, setOrder] = useState('DESC')
 
 	return (
-		<main>
-			<Routes>
+		<Box sx={{ display: "flex", justifyContent: "center" }}>			<Routes>
 				<Route path="/credit" element={<CreditPage />} />
 
 				<Route path="/login" element={<Login />} />
@@ -54,6 +54,6 @@ export default function Contents() {
 				<Route path="/login" element={<Login />} />
 				<Route path="*" element={<Navigate to="/topic/all" />} />
 			</Routes>
-		</main>
+		</Box>
 	)
 }

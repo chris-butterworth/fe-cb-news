@@ -1,19 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 import { timeSince } from '../../../utils'
 import { portfolio } from '../../Portfolio'
+import { Button, Paper } from '@mui/material'
 
 export default function CreditPage() {
 	const navigate = useNavigate()
 
 	return (
-		<div>
-			<button
+		<Paper>
+			<Button
 				onClick={() => {
 					navigate(-1)
 				}}
 			>
 				Go back
-			</button>
+			</Button>
 
 			<div className="article-single-card">
 				<div className="article-single-credit-bar">
@@ -32,6 +33,6 @@ export default function CreditPage() {
 					<img src={portfolio.article_img_url} />
 				</div>
 			</div>
-		</div>
+		</Paper>
 	)
 }

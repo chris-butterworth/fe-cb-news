@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import { getTopics } from '../../api'
 import { Context } from './contexts/Contexts'
+import { Accordion, Badge } from '@mui/material'
 
 export default function Header({ setTopic }) {
 	const [topics, setTopics] = useState([])
@@ -20,13 +21,13 @@ export default function Header({ setTopic }) {
 					setTopic('')
 				}}
 			>
-				<img
+				<Badge
 					className="header-logo"
 					src="https://pic.onlinewebfonts.com/thumbnails/icons_4116.svg"
 					alt="website logo"
 				/>
 			</Link>
-			<nav>
+			<Accordion>
 				<ul>
 					<li>
 						<Link
@@ -72,7 +73,7 @@ export default function Header({ setTopic }) {
 						</Link>
 					</li>
 				</ul>
-			</nav>
+			</Accordion>
 		</header>
 	)
 }
