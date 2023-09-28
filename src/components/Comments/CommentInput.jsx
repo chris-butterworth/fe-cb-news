@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postComment } from "../../../api";
+import { Button } from "@mui/material";
 
 export default function CommentInput({ setComments, user, article_id }) {
   const [inputActive, setInputActive] = useState(false);
@@ -34,14 +35,14 @@ export default function CommentInput({ setComments, user, article_id }) {
   return (
     <div className="comment-input">
       {!inputActive && (
-        <button
-          className="comment-input-activate-button"
+        <Button
+          className="comment-input-activate-Button"
           onClick={() => {
             setInputActive(true);
           }}
         >
           Leave a comment
-        </button>
+        </Button>
       )}
       {inputActive && (
         <form className="comment-input-form">
@@ -52,23 +53,23 @@ export default function CommentInput({ setComments, user, article_id }) {
               setInputField(e.target.value);
             }}
           ></textarea>
-          <button
-            type="button"
-            className="comment-input-deactivate-button"
+          <Button
+            type="Button"
+            className="comment-input-deactivate-Button"
             onClick={() => {
               setInputActive(false);
               setInputField("");
             }}
           >
             X
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
-            className="comment-input-submit-button"
+            className="comment-input-submit-Button"
             onClick={handleSubmit}
           >
             Add Comment
-          </button>
+          </Button>
         </form>
       )}
     </div>

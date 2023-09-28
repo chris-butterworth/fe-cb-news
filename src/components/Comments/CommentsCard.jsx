@@ -2,6 +2,7 @@ import { deleteComment, patchCommentVotes } from "../../../api";
 import { useContext, useState } from "react";
 import { timeSince } from "../../../utils";
 import { Context } from "../contexts/Contexts";
+import { Button } from "@mui/material";
 
 export default function CommentCard({ comment, commentVotes }) {
   const [votes, setVotes] = useState(commentVotes);
@@ -45,31 +46,31 @@ export default function CommentCard({ comment, commentVotes }) {
         </div>
         <div className="comment-action-bar">
           <div className="comment-action-bar-votes">
-            <button
+            <Button
               onClick={(event) => {
                 handleVote(event, -1);
               }}
             >
               -
-            </button>
+            </Button>
             <strong>{votes}</strong>
-            <button
+            <Button
               onClick={(event) => {
                 handleVote(event, 1);
               }}
             >
               +
-            </button>
+            </Button>
           </div>
           {user === comment.author &&
             typeof comment.comment_id !== "string" && (
-              <button
+              <Button
                 onClick={(event) => {
                   handleDeleteComment(event);
                 }}
               >
                 X
-              </button>
+              </Button>
             )}
         </div>
       </div>

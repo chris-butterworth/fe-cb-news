@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { timeSince } from '../../../utils'
 import { portfolio } from '../../Portfolio'
+import { Paper } from '@mui/material'
 
 export default function CreditsCard() {
 	const [bodyPreview, setBodyPreview] = useState(true)
@@ -15,7 +16,7 @@ export default function CreditsCard() {
 	}
 
 	return (
-		<li className="articles-card">
+		<Paper sx={{margin:'0.5em', padding:'0.5em'}}>
 			<div className="articles-credit-bar">
 				<strong>{portfolio.author}</strong>
 				<span>&ensp;</span>
@@ -51,6 +52,6 @@ export default function CreditsCard() {
 					</Link>
 				)}
 			</div>
-		</li>
+		</Paper>
 	)
 }

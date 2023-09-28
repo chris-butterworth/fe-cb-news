@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Login from './components/user/Login'
 import { useContext } from 'react'
 import { Context } from './components/contexts/Contexts'
-import { Container, Grid, Paper } from '@mui/material'
+import { Box, Container, Grid, Paper } from '@mui/material'
 
 function App() {
 	const [topic, setTopic] = useState('all')
@@ -14,10 +14,10 @@ function App() {
 	return (
 		<Grid container>
 			{user ? (
-				<div>
+				<Box sx={{maxWidth:'1000px', margin:'auto'}}>
 					<Header topic={topic} setTopic={setTopic} />
 					<Contents topic={topic} />
-				</div>
+				</Box>
 			) : (
 				<Login />
 			)}

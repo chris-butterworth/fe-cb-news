@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { patchArticleVotes } from '../../../api'
 import { useState } from 'react'
 import { timeSince } from '../../../utils'
-import { Paper } from '@mui/material'
+import { Button, Paper, Typography } from '@mui/material'
 
 export default function ArticleCard({ article, articleVotes }) {
 	const [votes, setVotes] = useState(articleVotes)
@@ -32,7 +32,7 @@ export default function ArticleCard({ article, articleVotes }) {
 	}
 
 	return (
-		<Paper>
+		<Paper sx={{margin:'0.5em', padding:'0.5em'}}>
 			<li className="articles-card">
 				<div className="articles-credit-bar">
 					<strong>{article.author}</strong>
@@ -48,7 +48,7 @@ export default function ArticleCard({ article, articleVotes }) {
 				<div className="articles-content">
 					<Link to={`/article/${article.article_id}`}>
 						<div className="articles-heading">
-							<h3>{article.title}</h3>
+							<Typography variant='h5'>{article.title}</Typography>
 						</div>
 
 						<div className="articles-body">
@@ -72,29 +72,29 @@ export default function ArticleCard({ article, articleVotes }) {
 
 				<div className="articles-action-bar">
 					<div className="articles-action-bar-votes">
-						<button
+						<Button
 							onClick={(event) => {
 								handleVote(event, -1)
 							}}
 						>
 							-
-						</button>
+						</Button>
 						<strong>{votes}</strong>
-						<button
+						<Button
 							onClick={(event) => {
 								handleVote(event, 1)
 							}}
 						>
 							+
-						</button>
+						</Button>
 					</div>
 
 					<Link to={`/article/${article.article_id}`}>
-						<button>💬 {article.comment_count}</button>
+						<Button>💬 {article.comment_count}</Button>
 					</Link>
 
 					<Link to={`/topic/${article.topic}`}>
-						<button>cb/{article.topic}</button>
+						<Button>cb/{article.topic}</Button>
 					</Link>
 				</div>
 			</li>
