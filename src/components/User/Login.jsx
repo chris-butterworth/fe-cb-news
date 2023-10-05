@@ -23,7 +23,7 @@ export default function Login() {
 						<li key={user.username}>
 							<h3>{user.username}</h3>
 							<h4>{user.name}</h4>
-							<Image src={user.avatar_url} />
+							<img src={user.avatar_url} />
 							<Link
 								onClick={() => {
 									setUser(user.username)
