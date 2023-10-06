@@ -45,9 +45,10 @@ export default function Login() {
             <ImageListItem key={user.username}>
               <ListItemButton
                 sx={{ maxHeight: { xs: "10rem", sm: "15rem" } }}
-                onClick={() => {
-                  setUser(user.username);
-                  localStorage.setItem("user", user.username);
+                onClick={(e) => {
+                  e.preventDefault()
+                  setUser(user);
+                  localStorage.setItem("user", user);
                 }}
                 to="/topics/all"
               >

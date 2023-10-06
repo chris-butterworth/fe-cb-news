@@ -13,11 +13,11 @@ function App() {
 
   return (
     <Grid container>
-      <Box sx={{ maxWidth: "1000px", margin: "auto", padding: "1rem" }}>
-        {user ? (
+      <Box sx={{ maxWidth: "1000px", margin: "auto" }}>
+        {user.username ? (
           <Box>
             <Header topic={topic} setTopic={setTopic} />
-            <Contents topic={topic} />
+            <Contents  topic={topic} />
           </Box>
         ) : (
           <Login />

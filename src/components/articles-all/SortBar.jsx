@@ -35,10 +35,6 @@ const SortBar = ({ topic, sortBy, setSortBy, order, setOrder }) => {
 
 	return (
 		<Paper sx={{ display:'flex', flexDirection:'column', padding:'0.2em', justifyContent:'space-between' }}>
-			<Typography variant="h6" sx={{ padding: '0.5em' }}>
-				{!topic && 'all topics'}
-				{topic && `cb / ${topic}`}
-			</Typography>
 			<Box sx={{display:'flex', alignItems:'center'}}>
 				<FormControl sx={{minWidth:'9em'}}>
 					<InputLabel id="sortby-label">Sort</InputLabel>

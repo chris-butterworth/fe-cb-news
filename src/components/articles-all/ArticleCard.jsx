@@ -32,9 +32,9 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
   };
 
   return (
-    <Box sx={{ }}>
+    <Box sx={{}}>
       {isLoading ? (
-        <Box sx={{margin:'auto', padding:'1rem'}}>
+        <Box sx={{ margin: "auto", padding: "1rem" }}>
           <Skeleton />
           <Skeleton animation="wave" />
           <Skeleton animation={false} />
@@ -49,7 +49,10 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
 
           <div className="articles-img-thumbnail">
             <Link to={`/article/${article.article_id}`}>
-              <img src={article.article_img_url} />
+              <img
+                style={{ maxWidth: "100px" }}
+                src={article.article_img_url}
+              />
             </Link>
           </div>
           <div className="articles-content">
