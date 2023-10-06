@@ -3,11 +3,11 @@ import { Context } from '../contexts/Contexts'
 import UserArticles from './UserArticles'
 
 export default function UserProfile({ articles, setArticles }) {
-	const { user } = useContext(Context)
+	const  {user}  = useContext(Context)
 	return (
 		<div>
 			<div className="profile-header">
-				<h3>Logged in user: {user}</h3>
+				<h3>Logged in user: {user.username}</h3>
 				<br />
 				<h4>This is a portfolio piece created by Chris Butterworth</h4>
 				<p>

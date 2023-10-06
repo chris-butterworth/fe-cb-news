@@ -17,7 +17,7 @@ export default function Contents({ topic, setTopic }) {
   const [order, setOrder] = useState("DESC");
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box >
       {" "}
       <Routes>
         <Route path="/credit" element={<CreditPage />} />

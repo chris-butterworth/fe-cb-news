@@ -1,13 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { patchArticleVotes } from "../../../api";
 import { useState } from "react";
 import { timeSince } from "../../../utils";
-import { Box, Button, Paper, Skeleton, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardHeader,
+  Paper,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 
 export default function ArticleCard({ article, articleVotes, isLoading }) {
   const [votes, setVotes] = useState(articleVotes);
   const [bodyPreview, setBodyPreview] = useState(true);
-
+  const navigate = useNavigate();
   const handleVote = (event, vote) => {
     event.preventDefault();
     setVotes((currVotes) => {
@@ -30,9 +41,9 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
       return <>{body.slice(0, 100)}...</>;
     }
   };
-
+  console.log(article);
   return (
-    <Box sx={{}}>
+    <div>
       {isLoading ? (
         <Box sx={{ margin: "auto", padding: "1rem" }}>
           <Skeleton />
@@ -40,64 +51,62 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
           <Skeleton animation={false} />
         </Box>
       ) : (
-        <li className="articles-card">
-          <div className="articles-credit-bar">
-            <strong>{article.author}</strong>
-            <span>&ensp;</span>
-            <span>{timeSince(article.created_at)}</span>
-          </div>
+        <Card>
+			<CardActionArea
+			  onClick={() => {
+				navigate(`/article/${article.article_id}`);
+			  }}
+			>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: "orange" }} aria-label="recipe">
+                {article.author.slice(0, 1)}
+              </Avatar>
+            }
+            title={article.author}
+            subheader={timeSince(article.created_at)}
+          />
+            <img style={{ maxWidth: "100px" }} src={article.article_img_url} />
 
-          <div className="articles-img-thumbnail">
-            <Link to={`/article/${article.article_id}`}>
-              <img
-                style={{ maxWidth: "100px" }}
-                src={article.article_img_url}
-              />
+            <Typography variant="h5">{article.title}</Typography>
+
+          {bodyPreview && bodyShortner(article.body)}
+
+          {!bodyPreview && article.body}
+          </CardActionArea>
+
+          {bodyPreview && (
+            <Link
+              to=""
+              onClick={(e) => {
+                e.preventDefault();
+                setBodyPreview(false);
+              }}
+            >
+              <p className="view-full-post">View full post</p>
             </Link>
-          </div>
-          <div className="articles-content">
-            <Link to={`/article/${article.article_id}`}>
-              <div className="articles-heading">
-                <Typography variant="h5">{article.title}</Typography>
-              </div>
+          )}
 
-              <div className="articles-body">
-                {bodyPreview && bodyShortner(article.body)}
+					  <CardActions>
+						  
 
-                {!bodyPreview && article.body}
-              </div>
-            </Link>
-            {bodyPreview && (
-              <Link
-                to=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  setBodyPreview(false);
-                }}
-              >
-                <p className="view-full-post">View full post</p>
-              </Link>
-            )}
-          </div>
 
-          <div className="articles-action-bar">
-            <div className="articles-action-bar-votes">
               <Button
                 onClick={(event) => {
-                  handleVote(event, -1);
+					handleVote(event, -1);
                 }}
-              >
+				>
                 -
               </Button>
               <strong>{votes}</strong>
               <Button
                 onClick={(event) => {
-                  handleVote(event, 1);
+					handleVote(event, 1);
                 }}
-              >
+				>
                 +
               </Button>
-            </div>
+
 
             <Link to={`/article/${article.article_id}`}>
               <Button>💬 {article.comment_count}</Button>
@@ -106,9 +115,10 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
             <Link to={`/topic/${article.topic}`}>
               <Button>cb/{article.topic}</Button>
             </Link>
-          </div>
-        </li>
+
+				  </CardActions>
+        </Card>
       )}
-    </Box>
+    </div>
   );
 }

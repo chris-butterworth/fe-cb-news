@@ -52,25 +52,6 @@ export default function Articles({
       );
   }, [topic, order, sortBy]);
 
-  // if (isLoading)
-  // 	return (
-  // 		<div>
-  // 			<SortBar
-  // 				topic={topic}
-  // 				sortBy={sortBy}
-  // 				order={order}
-  // 				setOrder={setOrder}
-  // 				setSortBy={setSortBy}
-  // 			/>
-  // 			<ul>
-  // 				<CreditsCard />
-  // 			</ul>
-  // 			<p className="loading-message">
-  // 				Loading... <br /> Data is hosted using a free plan at Render which
-  // 				spins down during inactivity. It won't be a moment!{' '}
-  // 			</p>
-  // 		</div>
-  // 	)
   if (isError)
     return (
       <div className="error-message">
@@ -97,19 +78,17 @@ export default function Articles({
         setSortBy={setSortBy}
       />
 
-      <ul>
-        {/* <CreditsCard /> */}
-        {articles.map((article) => {
-          return (
-            <ArticleCard
-              key={article.article_id}
-              article={article}
-              articleVotes={article.votes}
-              isLoading={isLoading}
-            />
-          );
-        })}
-      </ul>
+      {/* <CreditsCard /> */}
+      {articles.map((article) => {
+        return (
+          <ArticleCard
+            key={article.article_id}
+            article={article}
+            articleVotes={article.votes}
+            isLoading={isLoading}
+          />
+        );
+      })}
     </div>
   );
 }

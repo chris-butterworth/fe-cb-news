@@ -2,10 +2,13 @@ import { Logout } from "@mui/icons-material";
 import { Avatar, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
 import { useContext, useState } from "react";
 import { Context } from "./contexts/Contexts";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileDropdown() {
   const { setUser, user } = useContext(Context);
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,7 +58,10 @@ export default function ProfileDropdown() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
+              <MenuItem onClick={() => {
+                  navigate('/profile')
+                  handleClose()
+              }}>
           <Avatar /> Profile
         </MenuItem>
 

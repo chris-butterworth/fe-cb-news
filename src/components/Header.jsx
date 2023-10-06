@@ -61,7 +61,9 @@ export default function Header({ setTopic, topic }) {
           />
 
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            {topic === "all"
+            {window.location.pathname === "/profile"
+              ? "Profile"
+              : topic === "all"
               ? "Home"
               : `${topic.slice(0, 1).toUpperCase()}${topic.slice(1)}`}
           </Typography>
