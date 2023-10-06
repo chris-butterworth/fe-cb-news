@@ -31,8 +31,14 @@ export default function Header({ setTopic, topic }) {
     setMenuOpen(false);
   };
 
+  const handleClick = (e) => {
+    setMenuOpen((current) => {
+      return !current;
+    });
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ width: "100%", margin: 0 }}>
       <AppBar position="static">
         <Toolbar sx={{ margin: "0.5em" }}>
           <IconButton
@@ -41,17 +47,17 @@ export default function Header({ setTopic, topic }) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 1 }}
-            onClick={(e) => {
-              e.preventDefault;
-              menuOpen ? setMenuOpen(false) : setMenuOpen(true);
-            }}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
           <Avatar
             sx={{ mr: 2 }}
             src="https://www.finsmes.com/wp-content/uploads/2020/01/collbox-1.png"
-            onClick={handleClose}
+            onClick={() => {
+              navigate("/");
+              handleClose();
+            }}
           />
 
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -64,7 +70,7 @@ export default function Header({ setTopic, topic }) {
       </AppBar>
       {menuOpen && (
         <ClickAwayListener onClickAway={handleClose}>
-          <Paper id="basic-menu" onClose={handleClose}>
+          <Paper>
             <Divider />
             <MenuItem
               onClick={(e) => {
@@ -78,7 +84,7 @@ export default function Header({ setTopic, topic }) {
             <Divider />
             {topics.map((topic) => {
               return (
-                <div>
+                <div key={topic.slug}>
                   <MenuItem
                     onClick={(e) => {
                       e.preventDefault();

@@ -62,7 +62,7 @@ export default function ProfileDropdown() {
         <MenuItem
           onClick={(e) => {
             e.preventDefault();
-            setUser(null);
+            setUser({});
             localStorage.setItem("user", null);
             handleClose();
           }}

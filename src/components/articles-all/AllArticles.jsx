@@ -15,6 +15,7 @@ export default function Articles({
   setSortBy,
   order,
   setOrder,
+  setTopic,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -31,7 +32,7 @@ export default function Articles({
         : searchParams.set("sort_by", sortBy);
       return searchParams;
     });
-
+    setTopic(topic);
     setIsLoading(true);
     setIsError(false);
     getArticles(topic, searchParams)

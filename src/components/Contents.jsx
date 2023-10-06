@@ -8,7 +8,7 @@ import Login from "./user/Login";
 import CreditPage from "./articles-single/CreditPage";
 import { Box } from "@mui/material";
 
-export default function Contents() {
+export default function Contents({ topic, setTopic }) {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
@@ -32,6 +32,7 @@ export default function Contents() {
               order={order}
               setOrder={setOrder}
               setSortBy={setSortBy}
+              setTopic={setTopic}
             />
           }
         />
