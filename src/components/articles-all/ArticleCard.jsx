@@ -9,11 +9,15 @@ import {
   Card,
   CardActionArea,
   CardActions,
+  CardContent,
   CardHeader,
+  CardMedia,
   Paper,
   Skeleton,
   Typography,
 } from "@mui/material";
+import { ThumbDown, ThumbUp } from "@mui/icons-material";
+import CommentIcon from "@mui/icons-material/Comment";
 
 export default function ArticleCard({ article, articleVotes, isLoading }) {
   const [votes, setVotes] = useState(articleVotes);
@@ -41,7 +45,7 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
       return <>{body.slice(0, 100)}...</>;
     }
   };
-  console.log(article);
+
   return (
     <div>
       {isLoading ? (
@@ -51,72 +55,97 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
           <Skeleton animation={false} />
         </Box>
       ) : (
-        <Card>
-			<CardActionArea
-			  onClick={() => {
-				navigate(`/article/${article.article_id}`);
-			  }}
-			>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: "orange" }} aria-label="recipe">
-                {article.author.slice(0, 1)}
-              </Avatar>
-            }
-            title={article.author}
-            subheader={timeSince(article.created_at)}
-          />
-            <img style={{ maxWidth: "100px" }} src={article.article_img_url} />
+        <Card
+          sx={{
+            maxWidth: 800,
+            boxShadow: 3,
+            m: 2,
+          }}
+        >
+          <CardActionArea
+            onClick={() => {
+              navigate(`/article/${article.article_id}`);
+            }}
+          >
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: "orange" }} aria-label="recipe">
+                  {article.author.slice(0, 1).toUpperCase()}
+                </Avatar>
+              }
+              title={article.author}
+              subheader={timeSince(article.created_at)}
+            />
 
-            <Typography variant="h5">{article.title}</Typography>
-
-          {bodyPreview && bodyShortner(article.body)}
-
-          {!bodyPreview && article.body}
-          </CardActionArea>
-
-          {bodyPreview && (
-            <Link
-              to=""
-              onClick={(e) => {
-                e.preventDefault();
-                setBodyPreview(false);
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column-reverse", sm: "inherit" },
+                justifyContent: "space-between",
               }}
             >
-              <p className="view-full-post">View full post</p>
-            </Link>
-          )}
+              <CardContent sx={{ p: 1 }}>
+                <Typography variant="h5">{article.title}</Typography>
+                <Typography
+                  sx={{
+                    display: { xs: "none", sm: "block" },
+                    height: "100%",
+                    overflow: "hidden",
+                    maxHeight: 288,
+                  }}
+                >
+                  {article.body}
+                </Typography>
+              </CardContent>
+              <CardMedia
+                component="img"
+                sx={{
+                  width: { sm: 200 },
 
-					  <CardActions>
-						  
-
-
+                  objectFit: "contain",
+                  mt: 0,
+                  mb: "auto",
+                  pt: 2,
+                }}
+                image={article.article_img_url}
+              />
+            </CardContent>
+          </CardActionArea>
+          <CardActions
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <CardContent sx={{ p: 0 }}>
               <Button
                 onClick={(event) => {
-					handleVote(event, -1);
+                  handleVote(event, -1);
                 }}
-				>
-                -
+              >
+                <ThumbDown />
               </Button>
               <strong>{votes}</strong>
               <Button
                 onClick={(event) => {
-					handleVote(event, 1);
+                  handleVote(event, 1);
                 }}
-				>
-                +
+              >
+                <ThumbUp />
               </Button>
-
-
-            <Link to={`/article/${article.article_id}`}>
-              <Button>💬 {article.comment_count}</Button>
-            </Link>
-
-            <Link to={`/topic/${article.topic}`}>
-              <Button>cb/{article.topic}</Button>
-            </Link>
-
-				  </CardActions>
+            </CardContent>
+            <CardContent sx={{ p: 0 }}>
+              <Button
+                sx={{ height: "100%" }}
+                onClick={() => navigate(`/article/${article.article_id}`)}
+              >
+                <CommentIcon sx={{ mr: 2 }} />{" "}
+                <Typography> {article.comment_count}</Typography>
+              </Button>
+            </CardContent>
+            <CardContent sx={{ p: 0, m: 0 }}>
+              <Button onClick={() => navigate(`/topic/${article.topic}`)}>
+                {article.topic}
+              </Button>
+            </CardContent>
+          </CardActions>
         </Card>
       )}
     </div>

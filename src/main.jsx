@@ -16,7 +16,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(lightTheme);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
           <ContextProvider>
@@ -25,5 +25,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </ContextProvider>
         </ThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

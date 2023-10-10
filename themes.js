@@ -44,8 +44,7 @@ export const lightTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          // borderRadius: "10px",
-          // fontFamily: `"Grandstander", handwriting`,
+          height: 'fill',
         },
       },
     },
