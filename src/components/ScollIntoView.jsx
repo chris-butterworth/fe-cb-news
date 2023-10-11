@@ -6,16 +6,12 @@ export default function ScrollIntoView() {
     const { children, window } = props;
     const trigger = useScrollTrigger();
 
-    const handleClick = (event) => {
-      const anchor = document.querySelector("#back-to-top-anchor");
-
-      if (anchor) {
-        anchor.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-      }
+    const handleClick = () => {
+      document.querySelector("#back-to-top-anchor").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
     };
 
     return (

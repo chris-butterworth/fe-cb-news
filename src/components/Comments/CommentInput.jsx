@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postComment } from "../../../api";
-import { Button } from "@mui/material";
-
+import { Box, Button, Card, Container, TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 export default function CommentInput({ setComments, user, article_id }) {
   const [inputActive, setInputActive] = useState(false);
   const [inputField, setInputField] = useState("");
@@ -33,26 +33,27 @@ export default function CommentInput({ setComments, user, article_id }) {
   };
 
   return (
-    <div className="comment-input">
+    <Container sx={{ display: "flex", flexDirection: "columm" }}>
       {!inputActive && (
         <Button
           className="comment-input-activate-Button"
           onClick={() => {
             setInputActive(true);
           }}
+          sx={{ width: "100%" }}
         >
           Leave a comment
         </Button>
       )}
       {inputActive && (
-        <form className="comment-input-form">
-          <textarea
+        <Container className="comment-input-form">
+          <TextField
             className="comment-input-field"
             value={inputField}
             onChange={(e) => {
               setInputField(e.target.value);
             }}
-          ></textarea>
+          ></TextField>
           <Button
             type="Button"
             className="comment-input-deactivate-Button"
@@ -61,7 +62,7 @@ export default function CommentInput({ setComments, user, article_id }) {
               setInputField("");
             }}
           >
-            X
+            <CloseIcon />
           </Button>
           <Button
             type="submit"
@@ -70,8 +71,8 @@ export default function CommentInput({ setComments, user, article_id }) {
           >
             Add Comment
           </Button>
-        </form>
+        </Container>
       )}
-    </div>
+    </Container>
   );
 }

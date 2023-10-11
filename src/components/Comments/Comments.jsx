@@ -18,7 +18,7 @@ export default function Comments({ comments, setComments, user }) {
         setIsLoading(false);
       })
       .catch((message) => {
-        console.log(message)
+        console.log(message);
         setIsLoading(false);
         setIsError(true);
       });
@@ -28,7 +28,7 @@ export default function Comments({ comments, setComments, user }) {
   if (isError) return <p>An unexpected error has occurred</p>;
 
   return (
-    <div className="">
+    <div id="comments">
       <CommentInput
         setComments={setComments}
         user={user}

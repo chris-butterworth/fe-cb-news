@@ -2,18 +2,6 @@ import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
   components: {
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-        },
-      },
-    },
     MuiTypography: {
       styleOverrides: {
         root: {
@@ -35,11 +23,6 @@ export const lightTheme = createTheme({
         },
       },
     },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-        },
-      },
-    },
+    
   },
 });
