@@ -79,6 +79,9 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
 
             <CardContent
               sx={{
+                p: 1,
+                pt: 0,
+                pb: 0,
                 display: "flex",
                 flexDirection: { xs: "column-reverse", sm: "inherit" },
                 justifyContent: "space-between",
@@ -101,11 +104,10 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
                 component="img"
                 sx={{
                   width: { sm: 200 },
-
                   objectFit: "contain",
-                  mt: 0,
+                  mt: { sm: 2 },
                   mb: "auto",
-                  pt: 2,
+                  borderRadius: 1,
                 }}
                 image={article.article_img_url}
               />
@@ -114,7 +116,7 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
           <CardActions
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <CardContent sx={{ p: 0 }}>
+            <Box>
               <Button
                 onClick={(event) => {
                   handleVote(event, -1);
@@ -130,21 +132,20 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
               >
                 <ThumbUp />
               </Button>
-            </CardContent>
-            <CardContent sx={{ p: 0 }}>
+            </Box>
+            <Box>
               <Button
-                sx={{ height: "100%" }}
                 onClick={() => navigate(`/article/${article.article_id}`)}
               >
                 <CommentIcon sx={{ mr: 2 }} />{" "}
                 <Typography> {article.comment_count}</Typography>
               </Button>
-            </CardContent>
-            <CardContent sx={{ p: 0, m: 0 }}>
+            </Box>
+            <Box>
               <Button onClick={() => navigate(`/topic/${article.topic}`)}>
                 {article.topic}
               </Button>
-            </CardContent>
+            </Box>
           </CardActions>
         </Card>
       )}

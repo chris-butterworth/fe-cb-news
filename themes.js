@@ -5,14 +5,12 @@ export const lightTheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          // fontFamily: `"Grandstander", handwriting`,
         },
       },
     },
     MuiInput: {
       styleOverrides: {
         root: {
-          // fontFamily: `"Grandstander", handwriting`,
         },
       },
     },
@@ -28,31 +26,18 @@ export const lightTheme = createTheme({
         // h6: { color: "#118ab2" },
       },
     },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          // fontFamily: `"Itim", "Annie Use Your Telescope", "Mali", "Grandstander", handwriting`,
-          // fontWeightLight: 300,
-          // fontWeightRegular: 400,
-          // fontWeightMedium: 500,
-          // color: "#118ab2",
-          // fontSize: "large",
-        },
-        // h6: { color: "#118ab2" },
-      },
-    },
     MuiButton: {
       styleOverrides: {
         root: {
-          height: 'fill',
+          minHeight: 50,
+          minWidth: 50,
+          p: 1,
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          // borderRadius: "10px",
-          // backgroundColor: "#f0ece2",
         },
       },
     },

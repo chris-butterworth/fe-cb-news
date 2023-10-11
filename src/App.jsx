@@ -6,6 +6,7 @@ import Login from "./components/user/Login";
 import { useContext } from "react";
 import { Context } from "./components/contexts/Contexts";
 import { Box, Container, Grid, Paper } from "@mui/material";
+import ScrollIntoView from "./components/ScollIntoView";
 
 function App() {
   const [topic, setTopic] = useState("all");
@@ -13,7 +14,10 @@ function App() {
 
   return (
     <Grid container>
-      <Box sx={{ width: "100%", maxWidth: "1000px", margin: "auto" }}>
+      <Box
+        id="back-to-top-anchor"
+        sx={{ width: "100%", maxWidth: "1000px", margin: "auto" }}
+      >
         {user.username ? (
           <Box>
             <Header topic={topic} setTopic={setTopic} />
@@ -22,6 +26,7 @@ function App() {
         ) : (
           <Login />
         )}
+        <ScrollIntoView />
       </Box>
     </Grid>
   );
