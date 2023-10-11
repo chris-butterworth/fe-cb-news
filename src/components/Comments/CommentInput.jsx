@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postComment } from "../../../api";
 import { Box, Button, Card, Container, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-export default function CommentInput({ setComments, user, article_id }) {
+import { Context } from "../contexts/Contexts";
+
+export default function CommentInput({ setComments, article_id }) {
   const [inputActive, setInputActive] = useState(false);
   const [inputField, setInputField] = useState("");
-
+  const [error, setError] = useState(false);
+  const { user } = useContext(Context);
   const handleSubmit = (e) => {
+    setError(false);
     const date = new Date();
     const timeNow = date.toISOString();
     e.preventDefault();
@@ -15,20 +19,20 @@ export default function CommentInput({ setComments, user, article_id }) {
         {
           comment_id: Math.random().toString(),
           votes: 1,
-          author: user,
+          author: user.username,
           body: inputField,
           created_at: timeNow,
         },
         ...currComments,
       ];
     });
-    postComment(article_id, user, inputField)
-      .catch(() => {
-        alert("your comment could not be added at this time");
-      })
+    postComment(article_id, user.username, inputField)
       .then(() => {
         setInputField("");
         setInputActive(false);
+      })
+      .catch(() => {
+        setError(true);
       });
   };
 
@@ -60,7 +64,9 @@ export default function CommentInput({ setComments, user, article_id }) {
       {inputActive && (
         <Container className="comment-input-form" sx={{ p: 0 }}>
           <TextField
-            label="Comment"
+            error={error}
+            label={error ? "Error" : "Comment"}
+            helperText={error && "Your comment could not be added at this time"}
             className="comment-input-field"
             value={inputField}
             multiline

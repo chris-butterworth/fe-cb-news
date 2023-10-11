@@ -31,7 +31,6 @@ export default function Comments({ comments, setComments, user }) {
     <div id="comments">
       <CommentInput
         setComments={setComments}
-        user={user}
         article_id={article_id}
       />
       <div className="comments-area">

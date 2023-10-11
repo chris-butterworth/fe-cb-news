@@ -62,7 +62,7 @@ export default function CommentCard({ comment, commentVotes }) {
               +
             </Button>
           </div>
-          {user === comment.author &&
+          {user.username === comment.author &&
             typeof comment.comment_id !== "string" && (
               <Button
                 onClick={(event) => {
