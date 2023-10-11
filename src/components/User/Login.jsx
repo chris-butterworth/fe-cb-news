@@ -24,7 +24,7 @@ export default function Login() {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ m: 1,mt:0 }}>
       <Typography variant="h1" fontWeight={"bold"}>
         C B - N E W S
       </Typography>
@@ -46,7 +46,7 @@ export default function Login() {
               <ListItemButton
                 sx={{ maxHeight: { xs: "10rem", sm: "15rem" } }}
                 onClick={(e) => {
-                  e.preventDefault()
+                  e.preventDefault();
                   setUser(user);
                   localStorage.setItem("user", user);
                 }}
