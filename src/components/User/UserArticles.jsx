@@ -2,6 +2,7 @@ import ArticleCard from "../articles-all/ArticleCard";
 import { useEffect, useState, useContext } from "react";
 import { getArticles } from "../../../api";
 import { Context } from "../contexts/Contexts";
+import { Button, Typography } from "@mui/material";
 export default function UserArticles({ articles, setArticles }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -32,37 +33,37 @@ export default function UserArticles({ articles, setArticles }) {
     return (
       <p>
         Loading... <br /> the data is hosted using a free plan at Render which
-        spins down during inactivity. It won't be a moment!{" "}
+        spins down during inactivity. It won't be a moment!
       </p>
     );
-  if (isError) return <strong>{isError}</strong>;
+  if (isError) return <Typography>{isError}</Typography>;
   return (
-    <div className="user-articles">
-      <ul>
-        <h3>Your most recent posts</h3>
-        <br />
-        <button
-          onClick={() => {
-            viewAllUserPosts
-              ? setViewAllUserPosts(false)
-              : setViewAllUserPosts(true);
-          }}
-        >
-          {viewAllUserPosts ? "View less" : "View all"}
-        </button>
-        {articles
-          .filter((article) => article.author === user.username)
-          .slice(0, viewAllUserPosts ? articles.length : 3)
-          .map((article) => {
-            return (
-              <ArticleCard
-                key={article.article_id}
-                article={article}
-                articleVotes={article.votes}
-              />
-            );
-          })}
-      </ul>
+    <div>
+      <Typography variant="h6" sx={{ m: 2 }}>
+        Your most recent posts
+      </Typography>
+      {articles
+        .filter((article) => article.author === user.username)
+        .slice(0, viewAllUserPosts ? articles.length : 1)
+        .map((article) => {
+          return (
+            <ArticleCard
+              key={article.article_id}
+              article={article}
+              articleVotes={article.votes}
+            />
+          );
+        })}
+      <Button
+        sx={{ width: "100%", mb:1 }}
+        onClick={() => {
+          viewAllUserPosts
+            ? setViewAllUserPosts(false)
+            : setViewAllUserPosts(true);
+        }}
+      >
+        {viewAllUserPosts ? "View less" : "View all"}
+      </Button>
     </div>
   );
 }
