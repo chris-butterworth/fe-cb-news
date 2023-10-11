@@ -43,7 +43,7 @@ export default function CommentCard({ comment, commentVotes }) {
     });
   };
   return (
-    <Card sx={{ display: hidden ? "none" : "block" }}>
+    <Card sx={{ display: hidden ? "none" : "block", boxShadow: 3, mb: 1 }}>
       <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography gutterBottom>{comment.author}</Typography>
         <Typography color="text.secondary" gutterBottom>
