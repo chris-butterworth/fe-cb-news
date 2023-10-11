@@ -76,7 +76,6 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
               title={article.author}
               subheader={timeSince(article.created_at)}
             />
-
             <CardContent
               sx={{
                 p: 1,

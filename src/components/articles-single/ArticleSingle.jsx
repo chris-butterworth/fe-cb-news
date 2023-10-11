@@ -71,74 +71,76 @@ export default function Article({ article, setArticle }) {
         Back
       </Button>
 
-      <Card sx={{ m: 1 }}>
-        <CardHeader
-          className="article-single-credit-bar"
-          title={article.author}
-          subheader={timeSince(article.created_at)}
+      {/* <Card sx={{ m: 1 }}> */}
+      <CardHeader
+        className="article-single-credit-bar"
+        title={article.author}
+        subheader={timeSince(article.created_at)}
+      />
+
+      <CardContent
+        sx={{
+          p: 1,
+          pt: 0,
+          pb: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+		  <Typography sx={{ m: 1 }} variant="h5">
+			{article.title}
+		  </Typography>
+        <CardMedia
+          component="img"
+          image={article.article_img_url}
+          sx={{
+            objectFit: "contain",
+            borderRadius: 1,
+          }}
         />
 
-        <CardContent
-          sx={{
-            p: 1,
-            pt: 0,
-            pb: 0,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <CardMedia
-            component="img"
-            image={article.article_img_url}
-            sx={{
-              objectFit: "contain",
-              borderRadius: 1,
+        <Typography>{article.body}</Typography>
+      </CardContent>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box>
+          <Button
+            onClick={(event) => {
+              handleVote(event, -1);
             }}
-          />
-          <Typography variant="h5">{article.title}</Typography>
-
-          <Typography>{article.body}</Typography>
-        </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box>
-            <Button
-              onClick={(event) => {
-                handleVote(event, -1);
-              }}
-            >
-              <ThumbDown />
-            </Button>
-            <strong>{votes}</strong>
-            <Button
-              onClick={(event) => {
-                handleVote(event, 1);
-              }}
-            >
-              <ThumbUp />
-            </Button>
-          </Box>
-          <Box>
-            <Button
-              onClick={() =>
-                document.querySelector("#comments").scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                  inline: "nearest",
-                })
-              }
-            >
-              <CommentIcon sx={{ mr: 2 }} />{" "}
-              <Typography> {article.comment_count}</Typography>
-            </Button>
-          </Box>
-          <Box>
-            <Button onClick={() => navigate(`/topic/${article.topic}`)}>
-              {article.topic}
-            </Button>
-          </Box>
-        </CardActions>
-      </Card>
+          >
+            <ThumbDown />
+          </Button>
+          <strong>{votes}</strong>
+          <Button
+            onClick={(event) => {
+              handleVote(event, 1);
+            }}
+          >
+            <ThumbUp />
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            onClick={() =>
+              document.querySelector("#comments").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+              })
+            }
+          >
+            <CommentIcon sx={{ mr: 2 }} />{" "}
+            <Typography> {article.comment_count}</Typography>
+          </Button>
+        </Box>
+        <Box>
+          <Button onClick={() => navigate(`/topic/${article.topic}`)}>
+            {article.topic}
+          </Button>
+        </Box>
+      </CardActions>
+      {/* </Card> */}
       <Outlet />
     </div>
   );

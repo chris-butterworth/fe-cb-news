@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
+
   components: {
     MuiTypography: {
       styleOverrides: {
@@ -23,6 +24,5 @@ export const lightTheme = createTheme({
         },
       },
     },
-    
   },
 });
