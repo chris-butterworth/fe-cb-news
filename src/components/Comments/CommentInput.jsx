@@ -39,8 +39,8 @@ export default function CommentInput({ setComments, article_id }) {
   return (
     <Container
       sx={{
-        borderTop: 10,
-        borderBottom: 10,
+        borderTop: 15,
+        borderBottom: 15,
         borderColor: "lightgrey",
         p: 1,
       }}
@@ -62,12 +62,11 @@ export default function CommentInput({ setComments, article_id }) {
         </Button>
       )}
       {inputActive && (
-        <Container className="comment-input-form" sx={{ p: 0 }}>
+        <Container sx={{ p: 0 }}>
           <TextField
             error={error}
             label={error ? "Error" : "Comment"}
             helperText={error && "Your comment could not be added at this time"}
-            className="comment-input-field"
             value={inputField}
             multiline
             minRows={3}
@@ -84,7 +83,6 @@ export default function CommentInput({ setComments, article_id }) {
           >
             <Button
               type="Button"
-              className="comment-input-deactivate-Button"
               onClick={() => {
                 setInputActive(false);
                 setInputField("");
@@ -92,11 +90,7 @@ export default function CommentInput({ setComments, article_id }) {
             >
               <CloseIcon />
             </Button>
-            <Button
-              type="submit"
-              className="comment-input-submit-Button"
-              onClick={handleSubmit}
-            >
+            <Button type="submit" onClick={handleSubmit}>
               Submit
             </Button>
           </Container>
@@ -105,3 +99,6 @@ export default function CommentInput({ setComments, article_id }) {
     </Container>
   );
 }
+// Connect input to button
+// profile page just simple
+// side bar on desktop with link to code and photo of me etc
