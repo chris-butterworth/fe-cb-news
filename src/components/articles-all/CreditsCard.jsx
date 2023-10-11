@@ -29,7 +29,7 @@ export default function CreditsCard() {
     <Card
       sx={{
         boxShadow: 3,
-        m: 2,
+        m: { xs: 1, md: 2 },
       }}
     >
       <CardActionArea
@@ -66,9 +66,9 @@ export default function CreditsCard() {
                 mb: 2,
               }}
             >
-              Thanks for taking a look at my project. This mobile responsive, full stack forum app
-              was created whilst on the 13 week Software Development bootcamp at
-              Northcoders. Click to learn more
+              Thanks for taking a look at my project. This mobile responsive,
+              full stack forum app was created whilst on the 13 week Software
+              Development bootcamp at Northcoders. Click to learn more
             </Typography>
           </CardContent>
           <CardMedia

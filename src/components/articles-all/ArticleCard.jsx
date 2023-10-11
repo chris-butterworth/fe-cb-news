@@ -48,7 +48,7 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
         <Card
           sx={{
             boxShadow: 3,
-            m: 2,
+            m: { xs: 1, md: 2 },
           }}
         >
           <CardActionArea

@@ -73,7 +73,7 @@ export default function Article({ article, setArticle }) {
       </Button>
 
       <CardContent
-        sx={{ display: "flex", justifyContent: "space-between", pb: 0 }}
+        sx={{ display: "flex", justifyContent: "space-between", pb: 0, pt: 0}}
       >
         <Typography gutterBottom>{article.author}</Typography>
         <Typography color="text.secondary" gutterBottom>

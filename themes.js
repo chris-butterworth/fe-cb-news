@@ -1,7 +1,9 @@
 import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
-
+  typography: {
+    fontFamily: ["Poppins"].join(","),
+  },
   components: {
     MuiTypography: {
       styleOverrides: {
