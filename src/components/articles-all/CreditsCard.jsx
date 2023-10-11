@@ -63,9 +63,12 @@ export default function CreditsCard() {
                 display: { xs: "none", sm: "block" },
                 height: "100%",
                 overflow: "hidden",
+                mb: 2,
               }}
             >
-              {portfolio.body}
+              Thanks for taking a look at my project. This mobile responsive, full stack forum app
+              was created whilst on the 13 week Software Development bootcamp at
+              Northcoders. Click to learn more
             </Typography>
           </CardContent>
           <CardMedia
@@ -74,7 +77,8 @@ export default function CreditsCard() {
               width: { sm: 200 },
               objectFit: "contain",
               mt: { sm: 2 },
-              mb: "auto",
+              mb: { xs: "auto", sm: 2 },
+              ml: { sm: 3 },
               borderRadius: 1,
             }}
             image={portfolio.article_img_url}

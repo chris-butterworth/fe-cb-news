@@ -94,6 +94,7 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
                   objectFit: "contain",
                   mt: { sm: 2 },
                   mb: "auto",
+                  ml: { sm: 3 },
                   borderRadius: 1,
                 }}
                 image={article.article_img_url}
