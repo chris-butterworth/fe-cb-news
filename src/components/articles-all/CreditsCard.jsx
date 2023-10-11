@@ -1,57 +1,86 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import { timeSince } from '../../../utils'
-import { portfolio } from '../../Portfolio'
-import { Paper } from '@mui/material'
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { timeSince } from "../../../utils";
+import { portfolio } from "../../Portfolio";
+import {
+  Avatar,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 export default function CreditsCard() {
-	const [bodyPreview, setBodyPreview] = useState(true)
-    
-	const bodyShortner = (body) => {
-		if (body.length < 200) {
-			return body
-		} else {
-			return <>{body.slice(0, 200)}...</>
-		}
-	}
+  const [bodyPreview, setBodyPreview] = useState(true);
+  const navigate = useNavigate();
 
-	return (
-		<Paper sx={{margin:'0.5em', padding:'0.5em'}}>
-			<div className="articles-credit-bar">
-				<strong>{portfolio.author}</strong>
-				<span>&ensp;</span>
-				<span>{timeSince(portfolio.created_at)}</span>
-			</div>
+  const bodyShortner = (body) => {
+    if (body.length < 200) {
+      return body;
+    } else {
+      return <>{body.slice(0, 200)}...</>;
+    }
+  };
 
-			<div className="articles-img-thumbnail">
-				<Link to={`/credit`}>
-					<img src={portfolio.article_img_url} />
-				</Link>
-			</div>
-			<div className="articles-content">
-				<Link to={`/credit`}>
-					<div className="articles-heading">
-						<h3>{portfolio.title}</h3>
-					</div>
-
-					<div className="articles-body">
-						{bodyPreview && bodyShortner(portfolio.body)}
-
-						{!bodyPreview && portfolio.body}
-					</div>
-				</Link>
-				{bodyPreview && (
-					<Link
-						to=""
-						onClick={(e) => {
-							e.preventDefault()
-							setBodyPreview(false)
-						}}
-					>
-						<p className="view-full-post">View full post</p>
-					</Link>
-				)}
-			</div>
-		</Paper>
-	)
+  return (
+    <Card
+      sx={{
+        boxShadow: 3,
+        m: 2,
+      }}
+    >
+      <CardActionArea
+        onClick={() => {
+          navigate(`/credit`);
+        }}
+      >
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "orange" }} aria-label="recipe">
+              {portfolio.author.slice(0, 1).toUpperCase()}
+            </Avatar>
+          }
+          title={portfolio.author}
+          subheader={timeSince(portfolio.created_at)}
+        />
+        <CardContent
+          sx={{
+            p: 1,
+            pt: 0,
+            pb: 0,
+            display: "flex",
+            flexDirection: { xs: "column-reverse", sm: "inherit" },
+            justifyContent: "space-between",
+          }}
+        >
+          <CardContent sx={{ p: 1 }}>
+            <Typography variant="h5">{portfolio.title}</Typography>
+            <Typography
+              sx={{
+                display: { xs: "none", sm: "block" },
+                height: "100%",
+                overflow: "hidden",
+              }}
+            >
+              {portfolio.body}
+            </Typography>
+          </CardContent>
+          <CardMedia
+            component="img"
+            sx={{
+              width: { sm: 200 },
+              objectFit: "contain",
+              mt: { sm: 2 },
+              mb: "auto",
+              borderRadius: 1,
+            }}
+            image={portfolio.article_img_url}
+          />
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
 }

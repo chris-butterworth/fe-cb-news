@@ -72,9 +72,10 @@ export default function Header({ setTopic, topic }) {
       </AppBar>
       {menuOpen && (
         <ClickAwayListener onClickAway={handleClose}>
-          <Paper>
+          <Paper  elevation={10}>
             <Divider />
             <MenuItem
+              sx={{mt:1}}
               onClick={(e) => {
                 e.preventDefault();
                 navigate("/");

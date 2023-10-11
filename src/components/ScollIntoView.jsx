@@ -22,7 +22,7 @@ export default function ScrollIntoView() {
           sx={{
             position: "fixed",
             bottom: 16,
-            right: { xs: 16, lg: "calc(50% - 450px)" },
+            right: { xs: 16, md: "calc(50% - 450px)" },
           }}
         >
           {children}

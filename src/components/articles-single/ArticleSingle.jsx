@@ -2,6 +2,7 @@ import { useParams, Outlet, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticle, patchArticleVotes } from "../../../api";
 import { timeSince } from "../../../utils";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   Box,
   Button,
@@ -68,15 +69,17 @@ export default function Article({ article, setArticle }) {
           navigate(-1);
         }}
       >
-        Back
+        <ArrowBackIcon />
       </Button>
 
-      {/* <Card sx={{ m: 1 }}> */}
-      <CardHeader
-        className="article-single-credit-bar"
-        title={article.author}
-        subheader={timeSince(article.created_at)}
-      />
+      <CardContent
+        sx={{ display: "flex", justifyContent: "space-between", pb: 0 }}
+      >
+        <Typography gutterBottom>{article.author}</Typography>
+        <Typography color="text.secondary" gutterBottom>
+          {timeSince(article.created_at)}
+        </Typography>
+      </CardContent>
 
       <CardContent
         sx={{
@@ -88,9 +91,9 @@ export default function Article({ article, setArticle }) {
           justifyContent: "space-between",
         }}
       >
-		  <Typography sx={{ m: 1 }} variant="h5">
-			{article.title}
-		  </Typography>
+        <Typography sx={{ m: 1 }} variant="h5">
+          {article.title}
+        </Typography>
         <CardMedia
           component="img"
           image={article.article_img_url}
@@ -100,7 +103,7 @@ export default function Article({ article, setArticle }) {
           }}
         />
 
-        <Typography>{article.body}</Typography>
+        <Typography sx={{ m: 1 }}>{article.body}</Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>

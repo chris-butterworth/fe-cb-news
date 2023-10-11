@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { patchArticleVotes } from "../../../api";
 import { useState } from "react";
 import { timeSince } from "../../../utils";
@@ -12,7 +12,6 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Paper,
   Skeleton,
   Typography,
 } from "@mui/material";
@@ -21,7 +20,6 @@ import CommentIcon from "@mui/icons-material/Comment";
 
 export default function ArticleCard({ article, articleVotes, isLoading }) {
   const [votes, setVotes] = useState(articleVotes);
-  const [bodyPreview, setBodyPreview] = useState(true);
   const navigate = useNavigate();
   const handleVote = (event, vote) => {
     event.preventDefault();
@@ -38,14 +36,6 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
     });
   };
 
-  const bodyShortner = (body) => {
-    if (body.length < 100) {
-      return body;
-    } else {
-      return <>{body.slice(0, 100)}...</>;
-    }
-  };
-
   return (
     <div>
       {isLoading ? (
@@ -57,7 +47,6 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
       ) : (
         <Card
           sx={{
-            maxWidth: 800,
             boxShadow: 3,
             m: 2,
           }}
@@ -93,7 +82,6 @@ export default function ArticleCard({ article, articleVotes, isLoading }) {
                     display: { xs: "none", sm: "block" },
                     height: "100%",
                     overflow: "hidden",
-                    maxHeight: 288,
                   }}
                 >
                   {article.body}

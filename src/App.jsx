@@ -16,7 +16,7 @@ function App() {
     <Grid container>
       <Box
         id="back-to-top-anchor"
-        sx={{ width: "100%", maxWidth: "1000px", margin: "auto" }}
+        sx={{ width: "100%", maxWidth: "960px", margin: "auto" }}
       >
         {user.username ? (
           <Box>

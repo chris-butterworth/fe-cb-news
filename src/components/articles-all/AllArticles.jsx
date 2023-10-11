@@ -78,7 +78,7 @@ export default function Articles({
         setSortBy={setSortBy}
       />
 
-      {/* <CreditsCard /> */}
+      <CreditsCard />
 	  
       {articles.map((article) => {
         return (

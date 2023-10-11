@@ -3,7 +3,7 @@ import { useState } from "react";
 import Articles from "./articles-all/AllArticles";
 import ArticlePage from "./articles-single/ArticleSingle";
 import Comments from "./comments/Comments";
-import UserProfile from "./user/UserProfile";
+import UserProfile from "./User/UserProfile";
 import Login from "./user/Login";
 import CreditPage from "./articles-single/CreditPage";
 
