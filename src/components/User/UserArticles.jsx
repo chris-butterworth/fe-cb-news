@@ -2,7 +2,7 @@ import ArticleCard from "../articles-all/ArticleCard";
 import { useEffect, useState, useContext } from "react";
 import { getArticles } from "../../../api";
 import { Context } from "../contexts/Contexts";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
 export default function UserArticles({ articles, setArticles }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -31,14 +31,17 @@ export default function UserArticles({ articles, setArticles }) {
 
   if (isLoading)
     return (
-      <p>
-        Loading... <br /> the data is hosted using a free plan at Render which
-        spins down during inactivity. It won't be a moment!
-      </p>
+      <Box sx={{ margin: "auto", padding: "1rem" }}>
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+      </Box>
     );
   if (isError) return <Typography>{isError}</Typography>;
   return (
+    
     <div>
+      
       <Typography variant="h6" sx={{ m: 2 }}>
         Your most recent posts
       </Typography>

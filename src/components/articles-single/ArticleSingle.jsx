@@ -11,6 +11,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Skeleton,
   Typography,
 } from "@mui/material";
 import { ThumbDown, ThumbUp } from "@mui/icons-material";
@@ -59,7 +60,29 @@ export default function Article({ article, setArticle }) {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <Box sx={{ margin: "auto", padding: "1rem" }}>
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+
+        <Skeleton
+          sx={{ height: 300, mt: 3, mb: 3 }}
+          animation="wave"
+          variant="rectangular"
+        />
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+      </Box>
+    );
   if (isError) return <h3>{isError}</h3>;
 
   return (
@@ -73,7 +96,7 @@ export default function Article({ article, setArticle }) {
       </Button>
 
       <CardContent
-        sx={{ display: "flex", justifyContent: "space-between", pb: 0, pt: 0}}
+        sx={{ display: "flex", justifyContent: "space-between", pb: 0, pt: 0 }}
       >
         <Typography gutterBottom>{article.author}</Typography>
         <Typography color="text.secondary" gutterBottom>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getComments } from "../../../api";
 import CommentCard from "./CommentsCard";
 import CommentInput from "./CommentInput";
+import { Box, Skeleton } from "@mui/material";
 
 export default function Comments({ comments, setComments, user }) {
   const { article_id } = useParams();
@@ -24,7 +25,13 @@ export default function Comments({ comments, setComments, user }) {
       });
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return (
+    <Box sx={{ margin: "auto", padding: "1rem" }}>
+      <Skeleton />
+      <Skeleton animation="wave" />
+      <Skeleton animation={false} />
+    </Box>
+  );
   if (isError) return <p>An unexpected error has occurred</p>;
 
   return (
