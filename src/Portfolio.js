@@ -20,7 +20,7 @@ export const portfolio = {
   },
 
   votes: 9000,
-  article_img_url: "/src/assets/milburn-koko.jpeg",
+  article_img_url: "/src/assets/milburn-koko.png",
   comment_count: 0,
   topic: "coding",
 };

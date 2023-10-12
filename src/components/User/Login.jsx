@@ -24,7 +24,7 @@ export default function Login() {
   }, []);
 
   return (
-    <Box sx={{ m: 1,mt:0 }}>
+    <Box sx={{ m: 1, mt: 0 }}>
       <Typography variant="h1" fontWeight={"bold"}>
         C B - N E W S
       </Typography>
@@ -48,7 +48,8 @@ export default function Login() {
                 onClick={(e) => {
                   e.preventDefault();
                   setUser(user);
-                  localStorage.setItem("user", user);
+                  localStorage.setItem("username", user.username);
+                  localStorage.setItem("userAvatar", user.avatar_url);
                 }}
                 to="/topics/all"
               >

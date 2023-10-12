@@ -69,7 +69,8 @@ export default function ProfileDropdown() {
           onClick={(e) => {
             e.preventDefault();
             setUser({});
-            localStorage.setItem("user", null);
+            localStorage.removeItem("username");
+            localStorage.removeItem("userAvatar");
             handleClose();
           }}
         >
