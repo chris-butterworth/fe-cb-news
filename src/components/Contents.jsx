@@ -14,8 +14,8 @@ export default function Contents({ setTopic }) {
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
   // the searchParam states must live here because the Articles page gets reloaded when selecting a new topic, which resets all the queries
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("DESC");
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
 
   return (
     <Box>

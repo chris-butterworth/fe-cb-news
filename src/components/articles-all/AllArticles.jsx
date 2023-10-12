@@ -4,7 +4,7 @@ import { getArticles } from "../../../api";
 import { useParams, useSearchParams } from "react-router-dom";
 import SortBar from "./SortBar";
 import CreditsCard from "./CreditsCard";
-import { Alert, AlertTitle, Card, Typography } from "@mui/material";
+import { Alert, AlertTitle, Typography } from "@mui/material";
 
 export default function Articles({
   articles,
@@ -19,7 +19,7 @@ export default function Articles({
   const [isError, setIsError] = useState("");
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get("sort_by"));
+
   useEffect(() => {
     if (searchParams.get("sort_by")) setSortBy(searchParams.get("sort_by"));
     if (searchParams.get("order")) setOrder(searchParams.get("order"));
