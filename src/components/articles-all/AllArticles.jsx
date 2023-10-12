@@ -18,8 +18,10 @@ export default function Articles({
   const [isError, setIsError] = useState("");
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  console.log(searchParams.get("sort_by"));
   useEffect(() => {
+    if (searchParams.get("sort_by")) setSortBy(searchParams.get("sort_by"));
+    if (searchParams.get("order")) setOrder(searchParams.get("order"));
     setSearchParams((searchParams) => {
       order === "DESC" || order === ""
         ? searchParams.delete("order")
