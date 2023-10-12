@@ -13,7 +13,6 @@ import {
 
 export default function CreditsCard() {
   const navigate = useNavigate();
-
   return (
     <Card
       sx={{
@@ -60,6 +59,7 @@ export default function CreditsCard() {
               Development bootcamp at Northcoders. Click to learn more
             </Typography>
           </CardContent>
+
           <CardMedia
             component="img"
             sx={{
