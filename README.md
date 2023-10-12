@@ -6,7 +6,7 @@ Code : https://github.com/chris-butterworth/fe-cb-news
 
 Back end API : https://github.com/chris-butterworth/cb-news
 
-This React app is the front end for my full stack application CB-news, a reddit style forum service. It was made as a portfolio piece, expanding upon the back end API I created.
+This React app is the front end for my full stack application CB-news, a mobile first, reddit style forum service. It was made as a portfolio piece, expanding upon the back end API I created.
 
 #### Key Features
 
@@ -18,6 +18,7 @@ This React app is the front end for my full stack application CB-news, a reddit 
 #### Technologies
 
 - React
+- Material UI
 - JSX
 - CSS
 - Vite

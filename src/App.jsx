@@ -1,11 +1,10 @@
-// import './App.css'
 import Contents from "./components/Contents";
 import Header from "./components/Header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "./components/user/Login";
 import { useContext } from "react";
 import { Context } from "./components/contexts/Contexts";
-import { Box, Container, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ScrollIntoView from "./components/ScollIntoView";
 
 function App() {

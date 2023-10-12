@@ -1,13 +1,10 @@
-import { Label } from "@mui/icons-material";
 import {
   Box,
   Button,
   FormControl,
   InputLabel,
   MenuItem,
-  Paper,
   Select,
-  Typography,
 } from "@mui/material";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";

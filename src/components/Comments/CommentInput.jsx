@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { postComment } from "../../../api";
-import { Box, Button, Card, Container, TextField } from "@mui/material";
+import { Button, Container, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Context } from "../contexts/Contexts";
 
@@ -99,6 +99,3 @@ export default function CommentInput({ setComments, article_id }) {
     </Container>
   );
 }
-// Connect input to button
-// profile page just simple
-// side bar on desktop with link to code and photo of me etc

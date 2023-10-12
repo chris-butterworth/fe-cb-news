@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { timeSince } from "../../../utils";
 import { portfolio } from "../../Portfolio";
 import {
@@ -9,21 +8,11 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Paper,
   Typography,
 } from "@mui/material";
 
 export default function CreditsCard() {
-  const [bodyPreview, setBodyPreview] = useState(true);
   const navigate = useNavigate();
-
-  const bodyShortner = (body) => {
-    if (body.length < 200) {
-      return body;
-    } else {
-      return <>{body.slice(0, 200)}...</>;
-    }
-  };
 
   return (
     <Card

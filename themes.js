@@ -2,21 +2,9 @@ import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
   typography: {
-    fontFamily: ["Poppins"].join(","),
+    fontFamily: ["Poppins"]
   },
   components: {
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          // fontFamily: `"Itim", "Annie Use Your Telescope", "Mali", "Grandstander", handwriting`,
-          // fontWeightLight: 300,
-          // fontWeightRegular: 400,
-          // fontWeightMedium: 500,
-          // color: "#118ab2",
-        },
-        // h6: { color: "#118ab2" },
-      },
-    },
     MuiButton: {
       styleOverrides: {
         root: {

@@ -4,9 +4,6 @@ import { getArticles } from "../../../api";
 import { useParams, useSearchParams } from "react-router-dom";
 import SortBar from "./SortBar";
 import CreditsCard from "./CreditsCard";
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { Backdrop } from "@mui/material";
 
 export default function Articles({
   articles,
@@ -77,9 +74,7 @@ export default function Articles({
         setOrder={setOrder}
         setSortBy={setSortBy}
       />
-
       <CreditsCard />
-	  
       {articles.map((article) => {
         return (
           <ArticleCard

@@ -9,7 +9,7 @@ import CreditPage from "./articles-single/CreditPage";
 
 import { Box } from "@mui/material";
 
-export default function Contents({ topic, setTopic }) {
+export default function Contents({ setTopic }) {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);

@@ -6,10 +6,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   Box,
   Button,
-  Card,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
   Skeleton,
   Typography,
