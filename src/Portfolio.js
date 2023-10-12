@@ -20,8 +20,7 @@ export const portfolio = {
   },
 
   votes: 9000,
-  article_img_url:
-		"https://drive.google.com/uc?export=view&id=1K06_rJjjGsxWlfjLEOEzMnUcXoPccuz3",
+  article_img_url: "https://i.ibb.co/vvStMMW/IMG-0219-2.jpg",
   comment_count: 0,
   topic: "coding",
 };
