@@ -25,21 +25,24 @@ export default function Comments({ comments, setComments, user }) {
       });
   }, []);
 
-  if (isLoading) return (
-    <Box sx={{ margin: "auto", padding: "1rem" }}>
-      <Skeleton />
-      <Skeleton animation="wave" />
-      <Skeleton animation={false} />
-    </Box>
-  );
-  if (isError) return <p>An unexpected error has occurred</p>;
-
+  if (isLoading)
+    return (
+      <Box sx={{ margin: "auto", padding: "1rem" }}>
+        <Skeleton />
+        <Skeleton animation="wave" />
+        <Skeleton animation={false} />
+      </Box>
+    );
+  if (isError) {
+    return (
+      <Alert severity="error" sx={{ m: 2, p: 2, boxShadow: 5 }}>
+        <AlertTitle>An unexpected error has occurred</AlertTitle>
+      </Alert>
+    );
+  }
   return (
     <div id="comments">
-      <CommentInput
-        setComments={setComments}
-        article_id={article_id}
-      />
+      <CommentInput setComments={setComments} article_id={article_id} />
       <div className="comments-area">
         {comments.length === 0 && (
           <p className="comments-area-non">Be the first to post a comment</p>

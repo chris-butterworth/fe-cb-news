@@ -37,11 +37,14 @@ export default function UserArticles({ articles, setArticles }) {
         <Skeleton animation={false} />
       </Box>
     );
-  if (isError) return <Typography>{isError}</Typography>;
+  if (isError)
+    return (
+      <Alert severity="error" sx={{ m: 2, p: 2, boxShadow: 5 }}>
+        <AlertTitle>{isError}</AlertTitle>
+      </Alert>
+    );
   return (
-    
     <div>
-      
       <Typography variant="h6" sx={{ m: 2 }}>
         Your most recent posts
       </Typography>
@@ -58,7 +61,7 @@ export default function UserArticles({ articles, setArticles }) {
           );
         })}
       <Button
-        sx={{ width: "100%", mb:1 }}
+        sx={{ width: "100%", mb: 1 }}
         onClick={() => {
           viewAllUserPosts
             ? setViewAllUserPosts(false)

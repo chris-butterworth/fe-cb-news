@@ -4,6 +4,8 @@ import { getArticle, patchArticleVotes } from "../../../api";
 import { timeSince } from "../../../utils";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
+  Alert,
+  AlertTitle,
   Box,
   Button,
   CardActions,
@@ -81,7 +83,12 @@ export default function Article({ article, setArticle }) {
         <Skeleton animation={false} />
       </Box>
     );
-  if (isError) return <h3>{isError}</h3>;
+  if (isError)
+    return (
+      <Alert severity="error" sx={{ m: 2, p: 2, boxShadow: 5 }}>
+        <AlertTitle>{isError}</AlertTitle>
+      </Alert>
+    );
 
   return (
     <div>
