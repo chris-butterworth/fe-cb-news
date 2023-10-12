@@ -4,6 +4,7 @@ import { getArticles } from "../../../api";
 import { useParams, useSearchParams } from "react-router-dom";
 import SortBar from "./SortBar";
 import CreditsCard from "./CreditsCard";
+import { Alert, AlertTitle, Card, Typography } from "@mui/material";
 
 export default function Articles({
   articles,
@@ -53,19 +54,18 @@ export default function Articles({
 
   if (isError)
     return (
-      <div className="error-message">
-        {typeof isError === "string" && <strong>{isError}</strong>}
+      <Alert severity="error" sx={{ m: 2, p: 2, boxShadow: 5 }}>
+        {typeof isError === "string" && <AlertTitle>{isError}</AlertTitle>}
         {typeof isError !== "string" && (
           <div>
-            <strong>{Object.keys(isError)} = </strong>
-            <ol>
-              {Object.values(isError)[0].map((item) => {
-                return <li key={item}>{item}</li>;
-              })}
-            </ol>
+            <AlertTitle variant="h4">Error</AlertTitle>
+            <Typography variant="h5">{Object.keys(isError)} = </Typography>
+            {Object.values(isError)[0].map((item) => {
+              return <Typography key={item}>{item}</Typography>;
+            })}
           </div>
         )}
-      </div>
+      </Alert>
     );
   return (
     <div>
